@@ -100,8 +100,8 @@ flutter run -d web       # Web
 
 ### 開発用依存関係
 
-<!-- - **flutter_test**: Flutter テストフレームワーク -->
-<!-- - **flutter_lints**: Dartコード分析とリント -->
+- **flutter_test**: Flutter テストフレームワーク
+- **flutter_lints**: Dartコード分析とリント
 
 ## ビルド
 
