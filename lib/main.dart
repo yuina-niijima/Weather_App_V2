@@ -43,12 +43,26 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-// --- ここから下を追加 ---
 class MainHomePage extends StatelessWidget {
   const MainHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color(0xFF4FACFE),
+              Color.fromARGB(255, 37, 163, 172),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
