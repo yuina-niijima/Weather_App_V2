@@ -15,8 +15,6 @@ class MyApp extends StatefulWidget {
 // 中身
 class _MyAppState extends State<MyApp> {
   @override
-  // 読みやすくするためにメイン画面を別クラスに分ける
-  @override
   Widget build(BuildContext context) {
     return MaterialApp(home: MainHomePage());
   }
