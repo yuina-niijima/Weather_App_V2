@@ -1,13 +1,6 @@
 import 'package:flutter/material.dart';
-//スプラッシュ画面
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 void main() {
-  // バインディングの初期化(定型文)
-  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  // スプラッシュ画面が自動で消えないようにする
-  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-
   runApp(const MyApp());
 }
 
@@ -22,20 +15,6 @@ class MyApp extends StatefulWidget {
 // 中身
 class _MyAppState extends State<MyApp> {
   @override
-  void initState() {
-    super.initState();
-    _dismissSplashScreen();
-  }
-
-  // スプラッシュ関数をいつ消すかの関数
-  void _dismissSplashScreen() async {
-    // ここで「2秒間」待機
-    await Future.delayed(const Duration(seconds: 2));
-
-    // 2秒経ったらスプラッシュを消して、アプリ画面を表示する
-    FlutterNativeSplash.remove();
-  }
-
   // 読みやすくするためにメイン画面を別クラスに分ける
   @override
   Widget build(BuildContext context) {
