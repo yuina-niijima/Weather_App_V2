@@ -24,7 +24,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    _dismissSplashScreen(); // ここでスプラッシュを制御する関数を呼ぶ
+    _dismissSplashScreen();
   }
 
   // スプラッシュ関数をいつ消すかの関数
