@@ -20,7 +20,6 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-// --- ここから下を追加 ---
 class MainHomePage extends StatelessWidget {
   const MainHomePage({super.key});
 
