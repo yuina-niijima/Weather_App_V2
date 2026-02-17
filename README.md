@@ -65,6 +65,16 @@ asdf install
 flutter pub get
 ```
 
+## スプラッシュ画面の設定
+
+このプロジェクトでは `flutter_native_splash` を使用してスプラッシュ画面を管理しています。
+アセット画像を変更したり、設定（`pubspec.yaml` または `flutter_native_splash.yaml`）を更新した場合は、必ず以下のコマンドを実行してネイティブコードを更新してください。
+
+```bash
+# スプラッシュ画面の生成・更新
+flutter pub run flutter_native_splash:create
+```
+
 ### 2. アプリの実行
 
 ```bash
@@ -123,7 +133,8 @@ flutter build <platform> --release
 
 ```bash
 flutter test
-```
+
+
 
 ## ライセンス
 
