@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app_v2/main_home_page.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+part 'main.g.dart';
+
+@riverpod
+String helloWorld(Ref ref) {
+  return 'Hello world';
+}
 
 void main() {
   runApp(const MyApp());
