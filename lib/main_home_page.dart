@@ -6,19 +6,9 @@ class MainHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: SizedBox(
         width: double.infinity,
         height: double.infinity,
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color.fromARGB(255, 45, 126, 197),
-              Color.fromARGB(255, 105, 231, 240),
-            ],
-          ),
-        ),
         child: Center(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 40),
@@ -35,11 +25,13 @@ class MainHomePage extends StatelessWidget {
                 const SizedBox(height: 50),
                 AppButton(
                   label: '都道府県選択',
+                  backgroundColor: Colors.blue,
                   onPressed: () {},
                 ),
                 const SizedBox(height: 12),
                 AppButton(
                   label: '現在地の天気を見る',
+                  backgroundColor: Colors.orange,
                   onPressed: () {},
                 ),
               ],
@@ -57,20 +49,26 @@ class AppButton extends StatelessWidget {
     super.key,
     required this.label,
     required this.onPressed,
+    this.backgroundColor,
   });
   final String label;
   final VoidCallback onPressed;
+  final Color? backgroundColor;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: backgroundColor, // ここで色を反映
+          foregroundColor: Colors.white, // 文字色を白に固定
+        ),
         child: Text(
           label,
           style: const TextStyle(
-            fontSize: 18,
+            fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
         ),
