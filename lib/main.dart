@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:weather_app_v2/prefecture_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatefulWidget {
@@ -14,7 +16,9 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: MainHomePage());
+    return MaterialApp(
+      home: PrefectureScreen(),
+    ); //本来mainscreenの呼び出し用です。mainscreenマージ前のため直接prefectureScreenを読んでいます。
   }
 }
 
