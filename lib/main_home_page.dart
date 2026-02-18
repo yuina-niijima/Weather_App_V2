@@ -33,11 +33,15 @@ class MainHomePage extends StatelessWidget {
                   fit: BoxFit.contain,
                 ),
                 const SizedBox(height: 50),
-
-                _buildButton('都道府県選択'),
+                AppButton(
+                  label: '都道府県選択',
+                  onPressed: () {},
+                ),
                 const SizedBox(height: 12),
-
-                _buildButton('現在地の天気を見る'),
+                AppButton(
+                  label: '現在地の天気を見る',
+                  onPressed: () {},
+                ),
               ],
             ),
           ),
@@ -47,19 +51,30 @@ class MainHomePage extends StatelessWidget {
   }
 }
 
-// ボタンWidget
-Widget _buildButton(String label) {
-  return SizedBox(
-    width: double.infinity,
-    child: ElevatedButton(
-      onPressed: () {},
-      child: Text(
-        label,
-        style: const TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
+// ボタンclass
+class AppButton extends StatelessWidget {
+  const AppButton({
+    super.key,
+    required this.label,
+    required this.onPressed,
+  });
+  final String label;
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: ElevatedButton(
+        onPressed: () {},
+        child: Text(
+          label,
+          style: const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
-    ),
-  );
+    );
+  }
 }
