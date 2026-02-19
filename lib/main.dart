@@ -21,12 +21,3 @@ class _MyAppState extends State<MyApp> {
     ); //本来mainscreenの呼び出し用です。mainscreenマージ前のため直接prefectureScreenを読んでいます。
   }
 }
-
-class MainHomePage extends StatelessWidget {
-  const MainHomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold();
-  }
-}
