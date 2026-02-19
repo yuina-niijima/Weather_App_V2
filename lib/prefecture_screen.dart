@@ -7,7 +7,9 @@ class PrefectureScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final prefectures = ref.watch(prefecturesProvider);
+    final prefectures = ref.watch(
+      prefecturesProvider,
+    ); //都道府県リストは特に動きがないため、riverpodの練習としてVMありませんが、このままマージします。
 
     return Scaffold(
       appBar: AppBar(title: const Text('都道府県選択')),
