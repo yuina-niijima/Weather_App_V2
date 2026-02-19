@@ -97,11 +97,11 @@ flutter run -d web       # Web
 
 ## 依存関係
 
-## 依存関係
-
 - **flutter**: Flutter SDK
 - **cupertino_icons**: iOS スタイルのアイコン
 - **[flutter_native_splash](https://pub.dev/packages/flutter_native_splash)**: スプラッシュ画像の設定
+- **hooks_riverpod**: 状態管理ライブラリ。データの保持や共有を簡単にする
+- **flutter_hooks**: Widgetのライフサイクルを簡潔に書けるようにする
 
 ### 開発用依存関係
 
