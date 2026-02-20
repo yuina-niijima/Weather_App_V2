@@ -62,8 +62,8 @@ class AppButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: backgroundColor, // ここで色を反映
-          foregroundColor: Colors.white, // 文字色を白に固定
+          backgroundColor: backgroundColor,
+          foregroundColor: Colors.white,
         ),
         child: Text(
           label,
