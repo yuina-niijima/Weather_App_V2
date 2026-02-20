@@ -9,7 +9,7 @@ class PrefectureScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final prefectures = ref.watch(
       prefecturesProvider,
-    ); //都道府県リストは特に動きがないため、riverpodの練習としてVMありませんが、このままマージします。
+    ); // NOTE: 都道府県リスト(lib/prefectures.dart)は定数なので本来Provider化する必要はありませんが、Riverpodの練習として管理・直接DIして使用しています
 
     return Scaffold(
       appBar: AppBar(title: const Text('都道府県選択')),
