@@ -18,6 +18,6 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: PrefectureScreen(),
-    ); //本来mainscreenの呼び出し用です。mainscreenマージ前のため直接prefectureScreenを読んでいます。
+    ); // TODO: 本来mainscreenの呼び出し用です。mainscreenマージ前のため直接prefectureScreenを読んでいます。
   }
 }
