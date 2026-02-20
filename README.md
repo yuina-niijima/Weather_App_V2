@@ -100,8 +100,11 @@ flutter run -d web       # Web
 - **flutter**: Flutter SDK
 - **cupertino_icons**: iOS スタイルのアイコン
 - **[flutter_native_splash](https://pub.dev/packages/flutter_native_splash)**: スプラッシュ画像の設定
-- **hooks_riverpod**: 状態管理ライブラリ。データの保持や共有を簡単にする
-- **flutter_hooks**: Widgetのライフサイクルを簡潔に書けるようにする
+- **[hooks_riverpod](https://riverpod.dev/ja/docs/introduction/getting_started)**: 状態管理ライブラリ。アプリ全体のデータを「保持・共有」し、画面内のリソースを自動で管理する。
+- **[flutter_hooks](https://riverpod.dev/ja/docs/introduction/getting_started)**: Widgetのライフサイクルを簡潔に書けるようにする。
+- **[riverpod_annotation](https://riverpod.dev/ja/docs/introduction/getting_started)**: 状態管理のコードを自動生成し、定義や利用をさらにシンプルにする。
+- **[riverpod_generator](https://riverpod.dev/ja/docs/introduction/getting_started)**: 状態管理ライブラリ。データの保持や共有を簡単に行い、面倒な定義コードを自動生成する。
+- **[build_runnner](https://riverpod.dev/ja/docs/introduction/getting_started)**: 状態管理ライブラリ。データの保持や共有を簡単にするため、アノテーションを元にして必要なプログラムを自動生成する実行機。
 
 ### 開発用依存関係
 
