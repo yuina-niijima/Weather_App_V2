@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$WeatherData {
 
- String get description; String get icon; double get tempMax; double get tempMin; int get humidity;
+ String get description; String get icon;@JsonKey(name: 'temp_max') double get tempMax;@JsonKey(name: 'temp_min') double get tempMin; int get humidity;
 /// Create a copy of WeatherData
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $WeatherDataCopyWith<$Res>  {
   factory $WeatherDataCopyWith(WeatherData value, $Res Function(WeatherData) _then) = _$WeatherDataCopyWithImpl;
 @useResult
 $Res call({
- String description, String icon, double tempMax, double tempMin, int humidity
+ String description, String icon,@JsonKey(name: 'temp_max') double tempMax,@JsonKey(name: 'temp_min') double tempMin, int humidity
 });
 
 
@@ -157,7 +157,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String description,  String icon,  double tempMax,  double tempMin,  int humidity)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String description,  String icon, @JsonKey(name: 'temp_max')  double tempMax, @JsonKey(name: 'temp_min')  double tempMin,  int humidity)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _WeatherData() when $default != null:
 return $default(_that.description,_that.icon,_that.tempMax,_that.tempMin,_that.humidity);case _:
@@ -178,7 +178,7 @@ return $default(_that.description,_that.icon,_that.tempMax,_that.tempMin,_that.h
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String description,  String icon,  double tempMax,  double tempMin,  int humidity)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String description,  String icon, @JsonKey(name: 'temp_max')  double tempMax, @JsonKey(name: 'temp_min')  double tempMin,  int humidity)  $default,) {final _that = this;
 switch (_that) {
 case _WeatherData():
 return $default(_that.description,_that.icon,_that.tempMax,_that.tempMin,_that.humidity);case _:
@@ -198,7 +198,7 @@ return $default(_that.description,_that.icon,_that.tempMax,_that.tempMin,_that.h
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String description,  String icon,  double tempMax,  double tempMin,  int humidity)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String description,  String icon, @JsonKey(name: 'temp_max')  double tempMax, @JsonKey(name: 'temp_min')  double tempMin,  int humidity)?  $default,) {final _that = this;
 switch (_that) {
 case _WeatherData() when $default != null:
 return $default(_that.description,_that.icon,_that.tempMax,_that.tempMin,_that.humidity);case _:
@@ -213,13 +213,13 @@ return $default(_that.description,_that.icon,_that.tempMax,_that.tempMin,_that.h
 @JsonSerializable()
 
 class _WeatherData implements WeatherData {
-  const _WeatherData({required this.description, required this.icon, required this.tempMax, required this.tempMin, required this.humidity});
+  const _WeatherData({required this.description, required this.icon, @JsonKey(name: 'temp_max') required this.tempMax, @JsonKey(name: 'temp_min') required this.tempMin, required this.humidity});
   factory _WeatherData.fromJson(Map<String, dynamic> json) => _$WeatherDataFromJson(json);
 
 @override final  String description;
 @override final  String icon;
-@override final  double tempMax;
-@override final  double tempMin;
+@override@JsonKey(name: 'temp_max') final  double tempMax;
+@override@JsonKey(name: 'temp_min') final  double tempMin;
 @override final  int humidity;
 
 /// Create a copy of WeatherData
@@ -255,7 +255,7 @@ abstract mixin class _$WeatherDataCopyWith<$Res> implements $WeatherDataCopyWith
   factory _$WeatherDataCopyWith(_WeatherData value, $Res Function(_WeatherData) _then) = __$WeatherDataCopyWithImpl;
 @override @useResult
 $Res call({
- String description, String icon, double tempMax, double tempMin, int humidity
+ String description, String icon,@JsonKey(name: 'temp_max') double tempMax,@JsonKey(name: 'temp_min') double tempMin, int humidity
 });
 
 

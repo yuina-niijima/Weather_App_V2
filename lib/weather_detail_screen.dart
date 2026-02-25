@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'prefectures.dart';
 import 'weather_provider.dart';
 
 class WeatherDetailScreen extends ConsumerWidget {
-  const WeatherDetailScreen({super.key});
+  final String city;
+  const WeatherDetailScreen({super.key, required this.city});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final city = ref.watch(selectedPrefectureProvider);
     final weatherAsync = ref.watch(weatherProvider);
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('$cityの天気'),
-      ),
+      appBar: AppBar(title: Text('$cityの天気')),
       body: Center(
         child: weatherAsync.when(
+          loading: () => const CircularProgressIndicator(),
+          error: (err, _) => _ErrorView(
+            onRetry: () => ref.invalidate(weatherProvider),
+          ),
           data: (weather) => Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -26,7 +27,8 @@ class WeatherDetailScreen extends ConsumerWidget {
               ),
               Text(
                 weather.description,
-                style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                style: const TextStyle(
+                  fontSize: 28,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -38,9 +40,6 @@ class WeatherDetailScreen extends ConsumerWidget {
               Text('湿度: ${weather.humidity}%'),
             ],
           ),
-          loading: () => const CircularProgressIndicator(),
-          error: (err, _) =>
-              _ErrorView(onRetry: () => ref.invalidate(weatherProvider)),
         ),
       ),
     );

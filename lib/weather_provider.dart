@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'weather_data.dart';
-import 'prefectures.dart';
 
 part 'weather_provider.g.dart';
 
@@ -17,38 +16,18 @@ Dio dio(Ref ref) {
 }
 
 @riverpod
-Future<WeatherData> weather(Ref ref) async {
-  final city = ref.watch(selectedPrefectureProvider);
-
+Future<WeatherData> fetchWeather(Ref ref, String city) async {
   final dio = ref.watch(dioProvider);
 
-  try {
-    final response = await dio.get(
-      '/weather',
-      queryParameters: {
-        'q': '$city,JP',
-        'appid': '5ee6adacdb42b2c30c14f16918a80a6b',
-        'units': 'metric',
-        'lang': 'ja',
-      },
-    );
+  final response = await dio.get(
+    '/weather',
+    queryParameters: {
+      'q': '$city,JP',
+      'appid': 'API',
+      'units': 'metric',
+      'lang': 'ja',
+    },
+  );
 
-    final data = response.data;
-
-    return WeatherData(
-      description: data['weather'][0]['description'],
-      icon: data['weather'][0]['icon'],
-      tempMax: (data['main']['temp_max'] as num).toDouble(),
-      tempMin: (data['main']['temp_min'] as num).toDouble(),
-      humidity: data['main']['humidity'] as int,
-    );
-  } on DioException {
-    return const WeatherData(
-      description: '通信エラー',
-      icon: '01d',
-      tempMax: 0.0,
-      tempMin: 0.0,
-      humidity: 0,
-    );
-  }
+  return WeatherData.fromJson(response.data);
 }
