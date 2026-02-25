@@ -53,13 +53,3 @@ List<String> prefectures(Ref ref) {
     '沖縄県',
   ];
 }
-
-// @Riverpod(keepAlive: true)
-// class SelectedPrefecture extends _$SelectedPrefecture {
-//   @override
-//   String build() => '東京都';
-
-//   void update(String name) {
-//     state = name;
-//   }
-// }
