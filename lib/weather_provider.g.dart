@@ -49,6 +49,53 @@ final class DioProvider extends $FunctionalProvider<Dio, Dio, Dio>
 
 String _$dioHash() => r'd9a4f4b4f5dd4547792e188a807abbfd188c9340';
 
+@ProviderFor(weatherRepository)
+final weatherRepositoryProvider = WeatherRepositoryProvider._();
+
+final class WeatherRepositoryProvider
+    extends
+        $FunctionalProvider<
+          WeatherRepository,
+          WeatherRepository,
+          WeatherRepository
+        >
+    with $Provider<WeatherRepository> {
+  WeatherRepositoryProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'weatherRepositoryProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$weatherRepositoryHash();
+
+  @$internal
+  @override
+  $ProviderElement<WeatherRepository> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  WeatherRepository create(Ref ref) {
+    return weatherRepository(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(WeatherRepository value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<WeatherRepository>(value),
+    );
+  }
+}
+
+String _$weatherRepositoryHash() => r'f24bc7aefc54dadbb46d9ce3632c81289cde9713';
+
 @ProviderFor(fetchWeather)
 final fetchWeatherProvider = FetchWeatherFamily._();
 
@@ -104,7 +151,7 @@ final class FetchWeatherProvider
   }
 }
 
-String _$fetchWeatherHash() => r'4f882c5bc3e90c6a4dd62c707c7536be435dd199';
+String _$fetchWeatherHash() => r'e64af4a5609b963c15b245963568e0d9fe5dc0b3';
 
 final class FetchWeatherFamily extends $Family
     with $FunctionalFamilyOverride<FutureOr<WeatherData>, String> {
