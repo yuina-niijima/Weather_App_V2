@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'weather_data.freezed.dart';
@@ -17,46 +18,46 @@ abstract class WeatherData with _$WeatherData {
       _$WeatherDataFromJson(json);
 }
 
-class WeatherDataResponse {
-  final Coord coord;
-  final List<WeatherDetail> weather;
-  final Main main;
+@freezed
+abstract class WeatherDataResponse with _$WeatherDataResponse {
+  const factory WeatherDataResponse({
+    required String coord,
+    required List<WeatherDetail> weather,
+    required Main main,
+  }) = _WeatherDataResponse;
 
-  WeatherDataResponse({
-    required this.coord,
-    required this.weather,
-    required this.main,
-  });
+  factory WeatherDataResponse.fromJson(Map<String, dynamic> json) =>
+      _$WeatherDataResponseFromJson(json);
 }
 
-class Coord {
-  final double lon;
-  final double lat;
+@freezed
+abstract class Coord with _$Coord {
+  const factory Coord({
+    required double lon,
+    required double lat,
+  }) = _Coord;
 
-  Coord({
-    required this.lon,
-    required this.lat,
-  });
+  factory Coord.fromJson(Map<String, dynamic> json) => _$CoordFromJson(json);
 }
 
-class WeatherDetail {
-  final String description;
-  final String icon;
+@freezed
+abstract class WeatherDetail with _$WeatherDetail {
+  const factory WeatherDetail({
+    required String description,
+    required String icon,
+  }) = _WeatherDetail;
 
-  WeatherDetail({
-    required this.description,
-    required this.icon,
-  });
+  factory WeatherDetail.fromJson(Map<String, dynamic> json) =>
+      _$WeatherDetailFromJson(json);
 }
 
-class Main {
-  final double tempMax;
-  final double tempMin;
-  final int humidity;
+@freezed
+abstract class Main with _$Main {
+  const factory Main({
+    @JsonKey(name: 'temp_max') required double tempMax,
+    @JsonKey(name: 'temp_min') required double tempMin,
+    required int humidity,
+  }) = _Main;
 
-  Main({
-    required this.tempMax,
-    required this.tempMin,
-    required this.humidity,
-  });
+  factory Main.fromJson(Map<String, dynamic> json) => _$MainFromJson(json);
 }
