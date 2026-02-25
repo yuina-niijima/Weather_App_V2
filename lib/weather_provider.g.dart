@@ -49,10 +49,10 @@ final class DioProvider extends $FunctionalProvider<Dio, Dio, Dio>
 
 String _$dioHash() => r'd9a4f4b4f5dd4547792e188a807abbfd188c9340';
 
-@ProviderFor(fetchweather)
-final fetchweatherProvider = FetchweatherFamily._();
+@ProviderFor(fetchWeather)
+final fetchWeatherProvider = FetchWeatherFamily._();
 
-final class FetchweatherProvider
+final class FetchWeatherProvider
     extends
         $FunctionalProvider<
           AsyncValue<WeatherData>,
@@ -60,23 +60,23 @@ final class FetchweatherProvider
           FutureOr<WeatherData>
         >
     with $FutureModifier<WeatherData>, $FutureProvider<WeatherData> {
-  FetchweatherProvider._({
-    required FetchweatherFamily super.from,
+  FetchWeatherProvider._({
+    required FetchWeatherFamily super.from,
     required String super.argument,
   }) : super(
          retry: null,
-         name: r'fetchweatherProvider',
+         name: r'fetchWeatherProvider',
          isAutoDispose: true,
          dependencies: null,
          $allTransitiveDependencies: null,
        );
 
   @override
-  String debugGetCreateSourceHash() => _$fetchweatherHash();
+  String debugGetCreateSourceHash() => _$fetchWeatherHash();
 
   @override
   String toString() {
-    return r'fetchweatherProvider'
+    return r'fetchWeatherProvider'
         ''
         '($argument)';
   }
@@ -90,12 +90,12 @@ final class FetchweatherProvider
   @override
   FutureOr<WeatherData> create(Ref ref) {
     final argument = this.argument as String;
-    return fetchweather(ref, argument);
+    return fetchWeather(ref, argument);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is FetchweatherProvider && other.argument == argument;
+    return other is FetchWeatherProvider && other.argument == argument;
   }
 
   @override
@@ -104,22 +104,22 @@ final class FetchweatherProvider
   }
 }
 
-String _$fetchweatherHash() => r'611748b6236284a0b3f831ee288cf0f2b31d45fc';
+String _$fetchWeatherHash() => r'3631affe8c0b1b18ec1752e34e57ce43bbb295b4';
 
-final class FetchweatherFamily extends $Family
+final class FetchWeatherFamily extends $Family
     with $FunctionalFamilyOverride<FutureOr<WeatherData>, String> {
-  FetchweatherFamily._()
+  FetchWeatherFamily._()
     : super(
         retry: null,
-        name: r'fetchweatherProvider',
+        name: r'fetchWeatherProvider',
         dependencies: null,
         $allTransitiveDependencies: null,
         isAutoDispose: true,
       );
 
-  FetchweatherProvider call(String city) =>
-      FetchweatherProvider._(argument: city, from: this);
+  FetchWeatherProvider call(String city) =>
+      FetchWeatherProvider._(argument: city, from: this);
 
   @override
-  String toString() => r'fetchweatherProvider';
+  String toString() => r'fetchWeatherProvider';
 }
