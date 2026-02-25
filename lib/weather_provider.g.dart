@@ -104,7 +104,7 @@ final class FetchWeatherProvider
   }
 }
 
-String _$fetchWeatherHash() => r'3631affe8c0b1b18ec1752e34e57ce43bbb295b4';
+String _$fetchWeatherHash() => r'4f882c5bc3e90c6a4dd62c707c7536be435dd199';
 
 final class FetchWeatherFamily extends $Family
     with $FunctionalFamilyOverride<FutureOr<WeatherData>, String> {

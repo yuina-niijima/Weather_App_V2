@@ -30,5 +30,13 @@ Future<WeatherData> fetchWeather(Ref ref, String city) async {
     },
   );
 
-  return WeatherData.fromJson(response.data);
+  final fullData = WeatherDataResponse.fromJson(response.data);
+
+  return WeatherData(
+    description: fullData.weather[0].description,
+    icon: fullData.weather[0].icon,
+    tempMax: fullData.main.tempMax,
+    tempMin: fullData.main.tempMin,
+    humidity: fullData.main.humidity,
+  );
 }
