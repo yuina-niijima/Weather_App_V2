@@ -302,7 +302,7 @@ as int,
 /// @nodoc
 mixin _$WeatherDataResponse implements DiagnosticableTreeMixin {
 
- String get coord; List<WeatherDetail> get weather; Main get main;
+ Coord get coord; List<WeatherDetail> get weather; Main get main;
 /// Create a copy of WeatherDataResponse
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -341,11 +341,11 @@ abstract mixin class $WeatherDataResponseCopyWith<$Res>  {
   factory $WeatherDataResponseCopyWith(WeatherDataResponse value, $Res Function(WeatherDataResponse) _then) = _$WeatherDataResponseCopyWithImpl;
 @useResult
 $Res call({
- String coord, List<WeatherDetail> weather, Main main
+ Coord coord, List<WeatherDetail> weather, Main main
 });
 
 
-$MainCopyWith<$Res> get main;
+$CoordCopyWith<$Res> get coord;$MainCopyWith<$Res> get main;
 
 }
 /// @nodoc
@@ -361,12 +361,21 @@ class _$WeatherDataResponseCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? coord = null,Object? weather = null,Object? main = null,}) {
   return _then(_self.copyWith(
 coord: null == coord ? _self.coord : coord // ignore: cast_nullable_to_non_nullable
-as String,weather: null == weather ? _self.weather : weather // ignore: cast_nullable_to_non_nullable
+as Coord,weather: null == weather ? _self.weather : weather // ignore: cast_nullable_to_non_nullable
 as List<WeatherDetail>,main: null == main ? _self.main : main // ignore: cast_nullable_to_non_nullable
 as Main,
   ));
 }
 /// Create a copy of WeatherDataResponse
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CoordCopyWith<$Res> get coord {
+  
+  return $CoordCopyWith<$Res>(_self.coord, (value) {
+    return _then(_self.copyWith(coord: value));
+  });
+}/// Create a copy of WeatherDataResponse
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -457,7 +466,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String coord,  List<WeatherDetail> weather,  Main main)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Coord coord,  List<WeatherDetail> weather,  Main main)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _WeatherDataResponse() when $default != null:
 return $default(_that.coord,_that.weather,_that.main);case _:
@@ -478,7 +487,7 @@ return $default(_that.coord,_that.weather,_that.main);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String coord,  List<WeatherDetail> weather,  Main main)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Coord coord,  List<WeatherDetail> weather,  Main main)  $default,) {final _that = this;
 switch (_that) {
 case _WeatherDataResponse():
 return $default(_that.coord,_that.weather,_that.main);case _:
@@ -498,7 +507,7 @@ return $default(_that.coord,_that.weather,_that.main);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String coord,  List<WeatherDetail> weather,  Main main)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Coord coord,  List<WeatherDetail> weather,  Main main)?  $default,) {final _that = this;
 switch (_that) {
 case _WeatherDataResponse() when $default != null:
 return $default(_that.coord,_that.weather,_that.main);case _:
@@ -516,7 +525,7 @@ class _WeatherDataResponse with DiagnosticableTreeMixin implements WeatherDataRe
   const _WeatherDataResponse({required this.coord, required final  List<WeatherDetail> weather, required this.main}): _weather = weather;
   factory _WeatherDataResponse.fromJson(Map<String, dynamic> json) => _$WeatherDataResponseFromJson(json);
 
-@override final  String coord;
+@override final  Coord coord;
  final  List<WeatherDetail> _weather;
 @override List<WeatherDetail> get weather {
   if (_weather is EqualUnmodifiableListView) return _weather;
@@ -565,11 +574,11 @@ abstract mixin class _$WeatherDataResponseCopyWith<$Res> implements $WeatherData
   factory _$WeatherDataResponseCopyWith(_WeatherDataResponse value, $Res Function(_WeatherDataResponse) _then) = __$WeatherDataResponseCopyWithImpl;
 @override @useResult
 $Res call({
- String coord, List<WeatherDetail> weather, Main main
+ Coord coord, List<WeatherDetail> weather, Main main
 });
 
 
-@override $MainCopyWith<$Res> get main;
+@override $CoordCopyWith<$Res> get coord;@override $MainCopyWith<$Res> get main;
 
 }
 /// @nodoc
@@ -585,13 +594,22 @@ class __$WeatherDataResponseCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? coord = null,Object? weather = null,Object? main = null,}) {
   return _then(_WeatherDataResponse(
 coord: null == coord ? _self.coord : coord // ignore: cast_nullable_to_non_nullable
-as String,weather: null == weather ? _self._weather : weather // ignore: cast_nullable_to_non_nullable
+as Coord,weather: null == weather ? _self._weather : weather // ignore: cast_nullable_to_non_nullable
 as List<WeatherDetail>,main: null == main ? _self.main : main // ignore: cast_nullable_to_non_nullable
 as Main,
   ));
 }
 
 /// Create a copy of WeatherDataResponse
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CoordCopyWith<$Res> get coord {
+  
+  return $CoordCopyWith<$Res>(_self.coord, (value) {
+    return _then(_self.copyWith(coord: value));
+  });
+}/// Create a copy of WeatherDataResponse
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')

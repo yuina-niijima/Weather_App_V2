@@ -25,7 +25,7 @@ Map<String, dynamic> _$WeatherDataToJson(_WeatherData instance) =>
 
 _WeatherDataResponse _$WeatherDataResponseFromJson(Map<String, dynamic> json) =>
     _WeatherDataResponse(
-      coord: json['coord'] as String,
+      coord: Coord.fromJson(json['coord'] as Map<String, dynamic>),
       weather: (json['weather'] as List<dynamic>)
           .map((e) => WeatherDetail.fromJson(e as Map<String, dynamic>))
           .toList(),

@@ -21,7 +21,7 @@ abstract class WeatherData with _$WeatherData {
 @freezed
 abstract class WeatherDataResponse with _$WeatherDataResponse {
   const factory WeatherDataResponse({
-    required String coord,
+    required Coord coord,
     required List<WeatherDetail> weather,
     required Main main,
   }) = _WeatherDataResponse;
