@@ -1,69 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:weather_app_v2/weather_detail_screen.dart';
+import 'prefectures.dart';
 
-class WeatherDetailScreen extends ConsumerWidget {
-  final String city;
-  const WeatherDetailScreen({
-    super.key,
-    required this.city,
-  });
+class PrefectureScreen extends ConsumerWidget {
+  const PrefectureScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final weatherAsync = ref.watch(WeatherProvider(city));
-
+    final prefectures = ref.watch(
+      prefecturesProvider,
+    ); // NOTE: 都道府県リスト(lib/prefectures.dart)は定数なので本来Provider化する必要はありませんが、Riverpodの練習として管理・直接DIして使用しています
     return Scaffold(
-      appBar: AppBar(
-        title: Text('$cityの天気'),
-      ),
-      body: Center(
-        child: weatherAsync.when(
-          data: (weather) => Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.network(
-                'https://openweathermap.org/img/wn/${weather.icon}@4x.png',
-                width: 150,
-                errorBuilder: (context, error, stackTrace) =>
-                    const Icon(Icons.wb_sunny, size: 100),
-              ),
-              Text(
-                weather.description,
-                style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
+      appBar: AppBar(title: const Text('都道府県選択')),
+      body: ListView.builder(
+        itemCount: prefectures.length,
+        itemBuilder: (context, index) {
+          final cityName = prefectures[index];
+          return ListTile(
+            title: Text(cityName),
+            onTap: () {
+              showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                useSafeArea: true,
+                builder: (context) => WeatherDetailScreen(
+                  city: cityName,
                 ),
-              ),
-              const SizedBox(height: 16),
-              Text(
-                '${weather.tempMax.toStringAsFixed(1)}°C / ${weather.tempMin.toStringAsFixed(1)}°C',
-                style: const TextStyle(fontSize: 24),
-              ),
-              Text('湿度: ${weather.humidity}%'),
-            ],
-          ),
-          loading: () => const CircularProgressIndicator(),
-          error: (err, _) => _ErrorView(
-            onRetry: () => ref.invalidate(WeatherProvider(city)),
-          ),
-        ),
+              );
+            },
+          );
+        },
       ),
-    );
-  }
-}
-
-class _ErrorView extends StatelessWidget {
-  final VoidCallback onRetry;
-  const _ErrorView({required this.onRetry});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Icon(Icons.error_outline, size: 48, color: Colors.red),
-        const Text('取得に失敗しました'),
-        TextButton(onPressed: onRetry, child: const Text('リトライ')),
-      ],
     );
   }
 }
