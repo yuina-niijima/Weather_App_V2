@@ -8,7 +8,7 @@ class WeatherDetailScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final weatherAsync = ref.watch(weatherProvider);
+    final weatherAsync = ref.watch(fetchWeatherProvider(city));
 
     return Scaffold(
       appBar: AppBar(title: Text('$cityの天気')),
@@ -16,7 +16,7 @@ class WeatherDetailScreen extends ConsumerWidget {
         child: weatherAsync.when(
           loading: () => const CircularProgressIndicator(),
           error: (err, _) => _ErrorView(
-            onRetry: () => ref.invalidate(weatherProvider),
+            onRetry: () => ref.invalidate(fetchWeatherProvider(city)),
           ),
           data: (weather) => Column(
             mainAxisAlignment: MainAxisAlignment.center,
