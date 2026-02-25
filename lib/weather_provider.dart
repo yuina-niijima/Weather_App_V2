@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:weather_app_v2/app_config.dart';
 import 'weather_data.dart';
 
 part 'weather_provider.g.dart';
@@ -23,7 +24,7 @@ Future<WeatherData> fetchWeather(Ref ref, String city) async {
     '/weather',
     queryParameters: {
       'q': '$city,JP',
-      'appid': 'API',
+      'appid': AppConfig.apiKey,
       'units': 'metric',
       'lang': 'ja',
     },
