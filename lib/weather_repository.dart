@@ -1,20 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:weather_app_v2/app_config.dart';
-import 'weather_data.dart';
+import 'package:weather_app_v2/dio.dart';
+import 'package:weather_app_v2/weather_data.dart';
 
-part 'weather_provider.g.dart';
-
-@riverpod
-Dio dio(Ref ref) {
-  return Dio(
-    BaseOptions(
-      baseUrl: 'https://api.openweathermap.org/data/2.5',
-      connectTimeout: const Duration(seconds: 5),
-      receiveTimeout: const Duration(seconds: 3),
-    ),
-  );
-}
+part 'weather_repository.g.dart';
 
 class WeatherRepository {
   final Dio dio;
@@ -48,9 +38,4 @@ WeatherRepository weatherRepository(Ref ref) {
   return WeatherRepository(
     ref.watch(dioProvider),
   );
-}
-
-@riverpod
-Future<WeatherData> fetchWeather(Ref ref, String city) async {
-  return ref.watch(weatherRepositoryProvider).fetchWeather(city);
 }
