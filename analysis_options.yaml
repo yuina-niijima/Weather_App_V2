@@ -3,3 +3,10 @@ include: package:flutter_lints/flutter.yaml
 formatter:
   # `末尾のカンマ`の設定。
   trailing_commas: preserve
+
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+  errors:
+    invalid_annotation_target: ignore

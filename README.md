@@ -105,6 +105,7 @@ flutter run -d web       # Web
 - **[riverpod_annotation](https://riverpod.dev/ja/docs/introduction/getting_started)**: 状態管理のコードを自動生成し、定義や利用をさらにシンプルにする。
 - **[riverpod_generator](https://riverpod.dev/ja/docs/introduction/getting_started)**: 状態管理ライブラリ。データの保持や共有を簡単に行い、面倒な定義コードを自動生成する。
 - **[build_runnner](https://riverpod.dev/ja/docs/introduction/getting_started)**: 状態管理ライブラリ。データの保持や共有を簡単にするため、アノテーションを元にして必要なプログラムを自動生成する実行機。
+- **[dio](https://pub.dev/packages/dio)**: HTTPリクエストを簡単かつ便利に行う。
 
 ### 開発用依存関係
 
