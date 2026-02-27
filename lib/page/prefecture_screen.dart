@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:weather_app_v2/weather_detail_screen.dart';
-import 'prefectures.dart';
+import 'package:weather_app_v2/constant/prefectures.dart';
+import 'package:weather_app_v2/page/weather_detail_screen.dart';
 
 class PrefectureScreen extends ConsumerWidget {
   const PrefectureScreen({super.key});

@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:weather_app_v2/app_config.dart';
-import 'package:weather_app_v2/dio.dart';
-import 'package:weather_app_v2/weather_data.dart';
+import 'package:weather_app_v2/constant/app_config.dart';
+import 'package:weather_app_v2/model/weather_data.dart';
+import 'package:weather_app_v2/repository/dio.dart';
 
 part 'weather_repository.g.dart';
 
