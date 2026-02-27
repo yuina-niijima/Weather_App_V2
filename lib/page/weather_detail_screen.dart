@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:weather_app_v2/model/weather_data.dart';
-import 'package:weather_app_v2/model/weather_detail_view_model.dart';
+import 'package:weather_app_v2/view_model/weather_detail_view_model.dart';
 
 class WeatherDetailScreen extends ConsumerWidget {
   final String city;
