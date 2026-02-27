@@ -9,13 +9,30 @@ abstract class WeatherData with _$WeatherData {
   const factory WeatherData({
     required String description,
     required String icon,
-    @JsonKey(name: 'temp_max') required double tempMax,
-    @JsonKey(name: 'temp_min') required double tempMin,
+    @JsonKey(name: 'temp_max') required Temp tempMax,
+    @JsonKey(name: 'temp_min') required Temp tempMin,
     required int humidity,
   }) = _WeatherData;
 
   factory WeatherData.fromJson(Map<String, dynamic> json) =>
       _$WeatherDataFromJson(json);
+}
+
+extension WeatherDataExtension on WeatherData {
+  String get iconUrl => 'https://openweathermap.org/img/wn/$icon@4x.png';
+}
+
+@freezed
+abstract class Temp with _$Temp {
+  const factory Temp({
+    required double value,
+  }) = _Temp;
+
+  factory Temp.fromJson(Map<String, dynamic> json) => _$TempFromJson(json);
+}
+
+extension TempExtension on Temp {
+  String get displayValue => '${value.toStringAsFixed(1)}°C';
 }
 
 @freezed

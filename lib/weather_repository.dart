@@ -26,8 +26,12 @@ class WeatherRepository {
     return WeatherData(
       description: fullData.weather[0].description,
       icon: fullData.weather[0].icon,
-      tempMax: fullData.main.tempMax,
-      tempMin: fullData.main.tempMin,
+      tempMax: Temp(
+        value: fullData.main.tempMax,
+      ),
+      tempMin: Temp(
+        value: fullData.main.tempMin,
+      ),
       humidity: fullData.main.humidity,
     );
   }

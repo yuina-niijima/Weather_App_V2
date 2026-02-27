@@ -9,8 +9,8 @@ part of 'weather_data.dart';
 _WeatherData _$WeatherDataFromJson(Map<String, dynamic> json) => _WeatherData(
   description: json['description'] as String,
   icon: json['icon'] as String,
-  tempMax: (json['temp_max'] as num).toDouble(),
-  tempMin: (json['temp_min'] as num).toDouble(),
+  tempMax: Temp.fromJson(json['temp_max'] as Map<String, dynamic>),
+  tempMin: Temp.fromJson(json['temp_min'] as Map<String, dynamic>),
   humidity: (json['humidity'] as num).toInt(),
 );
 
@@ -22,6 +22,13 @@ Map<String, dynamic> _$WeatherDataToJson(_WeatherData instance) =>
       'temp_min': instance.tempMin,
       'humidity': instance.humidity,
     };
+
+_Temp _$TempFromJson(Map<String, dynamic> json) =>
+    _Temp(value: (json['value'] as num).toDouble());
+
+Map<String, dynamic> _$TempToJson(_Temp instance) => <String, dynamic>{
+  'value': instance.value,
+};
 
 _WeatherDataResponse _$WeatherDataResponseFromJson(Map<String, dynamic> json) =>
     _WeatherDataResponse(

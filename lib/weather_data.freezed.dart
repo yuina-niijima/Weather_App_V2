@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$WeatherData implements DiagnosticableTreeMixin {
 
- String get description; String get icon;@JsonKey(name: 'temp_max') double get tempMax;@JsonKey(name: 'temp_min') double get tempMin; int get humidity;
+ String get description; String get icon;@JsonKey(name: 'temp_max') Temp get tempMax;@JsonKey(name: 'temp_min') Temp get tempMin; int get humidity;
 /// Create a copy of WeatherData
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -54,11 +54,11 @@ abstract mixin class $WeatherDataCopyWith<$Res>  {
   factory $WeatherDataCopyWith(WeatherData value, $Res Function(WeatherData) _then) = _$WeatherDataCopyWithImpl;
 @useResult
 $Res call({
- String description, String icon,@JsonKey(name: 'temp_max') double tempMax,@JsonKey(name: 'temp_min') double tempMin, int humidity
+ String description, String icon,@JsonKey(name: 'temp_max') Temp tempMax,@JsonKey(name: 'temp_min') Temp tempMin, int humidity
 });
 
 
-
+$TempCopyWith<$Res> get tempMax;$TempCopyWith<$Res> get tempMin;
 
 }
 /// @nodoc
@@ -76,12 +76,30 @@ class _$WeatherDataCopyWithImpl<$Res>
 description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,icon: null == icon ? _self.icon : icon // ignore: cast_nullable_to_non_nullable
 as String,tempMax: null == tempMax ? _self.tempMax : tempMax // ignore: cast_nullable_to_non_nullable
-as double,tempMin: null == tempMin ? _self.tempMin : tempMin // ignore: cast_nullable_to_non_nullable
-as double,humidity: null == humidity ? _self.humidity : humidity // ignore: cast_nullable_to_non_nullable
+as Temp,tempMin: null == tempMin ? _self.tempMin : tempMin // ignore: cast_nullable_to_non_nullable
+as Temp,humidity: null == humidity ? _self.humidity : humidity // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }
-
+/// Create a copy of WeatherData
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TempCopyWith<$Res> get tempMax {
+  
+  return $TempCopyWith<$Res>(_self.tempMax, (value) {
+    return _then(_self.copyWith(tempMax: value));
+  });
+}/// Create a copy of WeatherData
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TempCopyWith<$Res> get tempMin {
+  
+  return $TempCopyWith<$Res>(_self.tempMin, (value) {
+    return _then(_self.copyWith(tempMin: value));
+  });
+}
 }
 
 
@@ -163,7 +181,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String description,  String icon, @JsonKey(name: 'temp_max')  double tempMax, @JsonKey(name: 'temp_min')  double tempMin,  int humidity)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String description,  String icon, @JsonKey(name: 'temp_max')  Temp tempMax, @JsonKey(name: 'temp_min')  Temp tempMin,  int humidity)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _WeatherData() when $default != null:
 return $default(_that.description,_that.icon,_that.tempMax,_that.tempMin,_that.humidity);case _:
@@ -184,7 +202,7 @@ return $default(_that.description,_that.icon,_that.tempMax,_that.tempMin,_that.h
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String description,  String icon, @JsonKey(name: 'temp_max')  double tempMax, @JsonKey(name: 'temp_min')  double tempMin,  int humidity)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String description,  String icon, @JsonKey(name: 'temp_max')  Temp tempMax, @JsonKey(name: 'temp_min')  Temp tempMin,  int humidity)  $default,) {final _that = this;
 switch (_that) {
 case _WeatherData():
 return $default(_that.description,_that.icon,_that.tempMax,_that.tempMin,_that.humidity);case _:
@@ -204,7 +222,7 @@ return $default(_that.description,_that.icon,_that.tempMax,_that.tempMin,_that.h
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String description,  String icon, @JsonKey(name: 'temp_max')  double tempMax, @JsonKey(name: 'temp_min')  double tempMin,  int humidity)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String description,  String icon, @JsonKey(name: 'temp_max')  Temp tempMax, @JsonKey(name: 'temp_min')  Temp tempMin,  int humidity)?  $default,) {final _that = this;
 switch (_that) {
 case _WeatherData() when $default != null:
 return $default(_that.description,_that.icon,_that.tempMax,_that.tempMin,_that.humidity);case _:
@@ -224,8 +242,8 @@ class _WeatherData with DiagnosticableTreeMixin implements WeatherData {
 
 @override final  String description;
 @override final  String icon;
-@override@JsonKey(name: 'temp_max') final  double tempMax;
-@override@JsonKey(name: 'temp_min') final  double tempMin;
+@override@JsonKey(name: 'temp_max') final  Temp tempMax;
+@override@JsonKey(name: 'temp_min') final  Temp tempMin;
 @override final  int humidity;
 
 /// Create a copy of WeatherData
@@ -267,11 +285,11 @@ abstract mixin class _$WeatherDataCopyWith<$Res> implements $WeatherDataCopyWith
   factory _$WeatherDataCopyWith(_WeatherData value, $Res Function(_WeatherData) _then) = __$WeatherDataCopyWithImpl;
 @override @useResult
 $Res call({
- String description, String icon,@JsonKey(name: 'temp_max') double tempMax,@JsonKey(name: 'temp_min') double tempMin, int humidity
+ String description, String icon,@JsonKey(name: 'temp_max') Temp tempMax,@JsonKey(name: 'temp_min') Temp tempMin, int humidity
 });
 
 
-
+@override $TempCopyWith<$Res> get tempMax;@override $TempCopyWith<$Res> get tempMin;
 
 }
 /// @nodoc
@@ -289,9 +307,302 @@ class __$WeatherDataCopyWithImpl<$Res>
 description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,icon: null == icon ? _self.icon : icon // ignore: cast_nullable_to_non_nullable
 as String,tempMax: null == tempMax ? _self.tempMax : tempMax // ignore: cast_nullable_to_non_nullable
-as double,tempMin: null == tempMin ? _self.tempMin : tempMin // ignore: cast_nullable_to_non_nullable
-as double,humidity: null == humidity ? _self.humidity : humidity // ignore: cast_nullable_to_non_nullable
+as Temp,tempMin: null == tempMin ? _self.tempMin : tempMin // ignore: cast_nullable_to_non_nullable
+as Temp,humidity: null == humidity ? _self.humidity : humidity // ignore: cast_nullable_to_non_nullable
 as int,
+  ));
+}
+
+/// Create a copy of WeatherData
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TempCopyWith<$Res> get tempMax {
+  
+  return $TempCopyWith<$Res>(_self.tempMax, (value) {
+    return _then(_self.copyWith(tempMax: value));
+  });
+}/// Create a copy of WeatherData
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TempCopyWith<$Res> get tempMin {
+  
+  return $TempCopyWith<$Res>(_self.tempMin, (value) {
+    return _then(_self.copyWith(tempMin: value));
+  });
+}
+}
+
+
+/// @nodoc
+mixin _$Temp implements DiagnosticableTreeMixin {
+
+ double get value;
+/// Create a copy of Temp
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$TempCopyWith<Temp> get copyWith => _$TempCopyWithImpl<Temp>(this as Temp, _$identity);
+
+  /// Serializes this Temp to a JSON map.
+  Map<String, dynamic> toJson();
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'Temp'))
+    ..add(DiagnosticsProperty('value', value));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Temp&&(identical(other.value, value) || other.value == value));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,value);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'Temp(value: $value)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $TempCopyWith<$Res>  {
+  factory $TempCopyWith(Temp value, $Res Function(Temp) _then) = _$TempCopyWithImpl;
+@useResult
+$Res call({
+ double value
+});
+
+
+
+
+}
+/// @nodoc
+class _$TempCopyWithImpl<$Res>
+    implements $TempCopyWith<$Res> {
+  _$TempCopyWithImpl(this._self, this._then);
+
+  final Temp _self;
+  final $Res Function(Temp) _then;
+
+/// Create a copy of Temp
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? value = null,}) {
+  return _then(_self.copyWith(
+value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
+as double,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [Temp].
+extension TempPatterns on Temp {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _Temp value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _Temp() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _Temp value)  $default,){
+final _that = this;
+switch (_that) {
+case _Temp():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _Temp value)?  $default,){
+final _that = this;
+switch (_that) {
+case _Temp() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( double value)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _Temp() when $default != null:
+return $default(_that.value);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( double value)  $default,) {final _that = this;
+switch (_that) {
+case _Temp():
+return $default(_that.value);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( double value)?  $default,) {final _that = this;
+switch (_that) {
+case _Temp() when $default != null:
+return $default(_that.value);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _Temp with DiagnosticableTreeMixin implements Temp {
+  const _Temp({required this.value});
+  factory _Temp.fromJson(Map<String, dynamic> json) => _$TempFromJson(json);
+
+@override final  double value;
+
+/// Create a copy of Temp
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$TempCopyWith<_Temp> get copyWith => __$TempCopyWithImpl<_Temp>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$TempToJson(this, );
+}
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'Temp'))
+    ..add(DiagnosticsProperty('value', value));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Temp&&(identical(other.value, value) || other.value == value));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,value);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'Temp(value: $value)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$TempCopyWith<$Res> implements $TempCopyWith<$Res> {
+  factory _$TempCopyWith(_Temp value, $Res Function(_Temp) _then) = __$TempCopyWithImpl;
+@override @useResult
+$Res call({
+ double value
+});
+
+
+
+
+}
+/// @nodoc
+class __$TempCopyWithImpl<$Res>
+    implements _$TempCopyWith<$Res> {
+  __$TempCopyWithImpl(this._self, this._then);
+
+  final _Temp _self;
+  final $Res Function(_Temp) _then;
+
+/// Create a copy of Temp
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? value = null,}) {
+  return _then(_Temp(
+value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
+as double,
   ));
 }
 

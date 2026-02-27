@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:weather_app_v2/weather_data.dart';
 import 'package:weather_app_v2/weather_detail_view_model.dart';
 
 class WeatherDetailScreen extends ConsumerWidget {
@@ -23,7 +24,7 @@ class WeatherDetailScreen extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.network(
-                  'https://openweathermap.org/img/wn/${weather.icon}@4x.png',
+                  weather.iconUrl,
                   width: 150,
                 ),
                 Text(
@@ -35,7 +36,7 @@ class WeatherDetailScreen extends ConsumerWidget {
                 ),
                 const SizedBox(height: 16),
                 Text(
-                  '${weather.tempMax.toStringAsFixed(1)}°C / ${weather.tempMin.toStringAsFixed(1)}°C',
+                  '${weather.tempMax.displayValue} / ${weather.tempMin.displayValue}',
                   style: const TextStyle(fontSize: 24),
                 ),
                 Text('湿度: ${weather.humidity}%'),
