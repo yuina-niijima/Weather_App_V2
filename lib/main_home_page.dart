@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app_v2/prefecture_screen.dart';
 
 class MainHomePage extends StatelessWidget {
   const MainHomePage({super.key});
@@ -26,7 +27,13 @@ class MainHomePage extends StatelessWidget {
                 AppButton(
                   label: '都道府県選択',
                   backgroundColor: Colors.blue,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const PrefectureScreen(),
+                      ),
+                    );
+                  },
                 ),
                 const SizedBox(height: 12),
                 AppButton(
