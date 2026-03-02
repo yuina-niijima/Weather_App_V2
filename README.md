@@ -106,6 +106,7 @@ flutter run -d web       # Web
 - **[riverpod_generator](https://riverpod.dev/ja/docs/introduction/getting_started)**: 状態管理ライブラリ。データの保持や共有を簡単に行い、面倒な定義コードを自動生成する。
 - **[build_runnner](https://riverpod.dev/ja/docs/introduction/getting_started)**: 状態管理ライブラリ。データの保持や共有を簡単にするため、アノテーションを元にして必要なプログラムを自動生成する実行機。
 - **[dio](https://pub.dev/packages/dio)**: HTTPリクエストを簡単かつ便利に行う。
+- **[permission_hundler]**:デバイスの権限管理ライブラリ。位置情報、カメラ、通知などの利用許可の状態確認や、ユーザーへの要求を行う。
 
 ### 開発用依存関係
 
