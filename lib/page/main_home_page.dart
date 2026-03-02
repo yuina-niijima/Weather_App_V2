@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app_v2/prefecture_screen.dart';
+import 'package:weather_app_v2/page/prefecture_screen.dart';
 
 class MainHomePage extends StatelessWidget {
   const MainHomePage({super.key});
