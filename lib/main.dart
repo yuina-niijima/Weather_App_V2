@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:weather_app_v2/main_home_page.dart';
+import 'package:weather_app_v2/page/main_home_page.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
