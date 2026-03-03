@@ -6,16 +6,7 @@ part 'location_repository.g.dart';
 
 class LocationRepository {
   Future<Position> getCurrentPosition() async {
-    final initialStatus = await Permission.locationWhenInUse.status;
-
-    final status = initialStatus.isDenied
-        ? await Permission.locationWhenInUse.request()
-        : initialStatus;
-
-    if (status.isPermanentlyDenied) {
-      await openAppSettings();
-      throw Exception('位置情報の許可を本体設定からオンにしてください');
-    }
+    final status = await Permission.locationWhenInUse.status;
 
     if (status.isGranted) {
       return await Geolocator.getCurrentPosition(
