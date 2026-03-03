@@ -12,8 +12,7 @@ class MainHomeViewModel extends _$MainHomeViewModel {
 
   // 位置情報の権限を要求するロジック
   Future<void> requestLocationPermission() async {
-    final status = await Permission.locationWhenInUse.request();
-    if (status.isGranted) {}
+    await Permission.locationWhenInUse.request();
   }
 
   // 現在地の天気を見るボタンの処理
