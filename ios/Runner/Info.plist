@@ -46,7 +46,7 @@
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>NSLocationUsageDescription</key>
-	<string>古いOSや、macOSで位置情報を取得するために使用します。</string>
+	<string>周辺の情報を取得し、現在地に合わせた機能を提供するために位置情報を使用します。</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>常に位置情報を取得するために使用します。</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
