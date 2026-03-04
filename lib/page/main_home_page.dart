@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:weather_app_v2/page/prefecture_screen.dart';
+import 'package:weather_app_v2/page/weather_detail_screen.dart';
 import 'package:weather_app_v2/view_model/main_home_page_view_model.dart';
 
 class MainHomePage extends HookConsumerWidget {
@@ -48,7 +49,18 @@ class MainHomePage extends HookConsumerWidget {
                 AppButton(
                   label: '現在地の天気を見る',
                   backgroundColor: Colors.orange,
-                  onPressed: () {},
+                  onPressed: () async {
+                    final city = await ref
+                        .read(mainHomeViewModelProvider.notifier)
+                        .fetchCurrentCity();
+                    if (context.mounted) {
+                      showModalBottomSheet(
+                        context: context,
+                        isScrollControlled: true,
+                        builder: (_) => WeatherDetailScreen(city: city),
+                      );
+                    }
+                  },
                 ),
               ],
             ),
