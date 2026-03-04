@@ -55,5 +55,7 @@ class WeatherRepository {
 
 @riverpod
 WeatherRepository weatherRepository(Ref ref) {
-  return WeatherRepository(ref.watch(dioProvider));
+  return WeatherRepository(
+    ref.watch(dioProvider),
+  );
 }
