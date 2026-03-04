@@ -13,11 +13,6 @@ final class WeatherDetailViewModel extends _$WeatherDetailViewModel {
 
   Future<WeatherData> _fetchWeather(String city) async {
     final repository = ref.read(weatherRepositoryProvider);
-
-    try {
-      return await repository.fetchWeather(city);
-    } catch (e) {
-      rethrow;
-    }
+    return repository.fetchWeather(city);
   }
 }
