@@ -1,3 +1,4 @@
+import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -18,6 +19,15 @@ class LocationRepository {
     }
 
     throw Exception('位置情報の利用が許可されませんでした');
+  }
+
+  Future<String> getCurrentCityName() async {
+    final pos = await getCurrentPosition();
+    final placemarks = await placemarkFromCoordinates(
+      pos.latitude,
+      pos.longitude,
+    );
+    return placemarks.first.locality ?? '不明な場所';
   }
 }
 
