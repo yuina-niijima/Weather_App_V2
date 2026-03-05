@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:weather_app_v2/model/weather_data.dart';
+import 'package:weather_app_v2/model/weather_exeption.dart';
 import 'package:weather_app_v2/view_model/weather_detail_view_model.dart';
 
 class WeatherDetailScreen extends ConsumerWidget {
@@ -9,58 +10,71 @@ class WeatherDetailScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(weatherDetailViewModelProvider(city));
+    final provider = weatherDetailViewModelProvider(city);
+
+    ref.listen(
+      provider,
+      (_, next) => next.whenOrNull(
+        error: (err, _) {
+          final message = err is WeatherException
+              ? err.message
+              : '予期せぬエラーが発生しました';
+
+          showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: const Text('エラー'),
+              content: Text(message),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text('OK'),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+    );
 
     return Scaffold(
       appBar: AppBar(title: Text('$cityの天気')),
       body: Center(
-        child: state.when(
-          loading: () => const CircularProgressIndicator(),
-          error: (err, _) => _ErrorView(
-            onRetry: () => ref.invalidate(weatherDetailViewModelProvider(city)),
-          ),
-          data: (weather) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.network(
-                  weather.iconUrl,
-                  width: 150,
-                ),
-                Text(
-                  weather.description,
-                  style: const TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 16),
-                Text(
-                  '${weather.tempMax.displayValue} / ${weather.tempMin.displayValue}',
-                  style: const TextStyle(fontSize: 24),
-                ),
-                Text('湿度: ${weather.humidity}%'),
-              ],
-            );
-          },
-        ),
+        child: ref
+            .watch(provider)
+            .when(
+              loading: () => const CircularProgressIndicator(),
+              error: (_, _) => TextButton(
+                onPressed: () => ref.invalidate(provider),
+                child: const Text('再試行'),
+              ),
+              data: (weather) => _WeatherContent(weather: weather),
+            ),
       ),
     );
   }
 }
 
-class _ErrorView extends StatelessWidget {
-  final VoidCallback onRetry;
-  const _ErrorView({required this.onRetry});
+class _WeatherContent extends StatelessWidget {
+  final WeatherData weather;
+  const _WeatherContent({required this.weather});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Icon(Icons.error_outline, size: 48, color: Colors.red),
-        const Text('取得に失敗しました'),
-        TextButton(onPressed: onRetry, child: const Text('リトライ')),
+        Image.network(weather.iconUrl, width: 150),
+        Text(
+          weather.description,
+          style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(height: 16),
+        Text(
+          '${weather.tempMax.displayValue} / ${weather.tempMin.displayValue}',
+          style: const TextStyle(fontSize: 24),
+        ),
+        Text('湿度: ${weather.humidity}%'),
       ],
     );
   }
