@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:weather_app_v2/model/location_data.dart';
 import 'package:weather_app_v2/model/weather_data.dart';
 import 'package:weather_app_v2/model/weather_exeption.dart';
 import 'package:weather_app_v2/view_model/weather_detail_view_model.dart';
 
 class WeatherDetailScreen extends ConsumerWidget {
-  final String city;
-  const WeatherDetailScreen({super.key, required this.city});
+  final LocationData location;
+  const WeatherDetailScreen({super.key, required this.location});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final provider = weatherDetailViewModelProvider(city);
-
+    final provider = weatherDetailViewModelProvider(location);
+    final cityName = location.cityName ?? '現在地';
     ref.listen(
       provider,
       (_, next) => next.whenOrNull(
@@ -38,7 +39,7 @@ class WeatherDetailScreen extends ConsumerWidget {
     );
 
     return Scaffold(
-      appBar: AppBar(title: Text('$cityの天気')),
+      appBar: AppBar(title: Text('$cityNameの天気')),
       body: Center(
         child: ref
             .watch(provider)
