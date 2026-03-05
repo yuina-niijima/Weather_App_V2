@@ -16,7 +16,7 @@ final class WeatherDetailViewModelProvider
     extends $AsyncNotifierProvider<WeatherDetailViewModel, WeatherData> {
   WeatherDetailViewModelProvider._({
     required WeatherDetailViewModelFamily super.from,
-    required String super.argument,
+    required LocationData super.argument,
   }) : super(
          retry: null,
          name: r'weatherDetailViewModelProvider',
@@ -52,7 +52,7 @@ final class WeatherDetailViewModelProvider
 }
 
 String _$weatherDetailViewModelHash() =>
-    r'4608f66bdb793e85eefac551cdd89360add56b9c';
+    r'40bf9db1a01ce6b1207c2749a21b00ba822de8e1';
 
 final class WeatherDetailViewModelFamily extends $Family
     with
@@ -61,7 +61,7 @@ final class WeatherDetailViewModelFamily extends $Family
           AsyncValue<WeatherData>,
           WeatherData,
           FutureOr<WeatherData>,
-          String
+          LocationData
         > {
   WeatherDetailViewModelFamily._()
     : super(
@@ -72,18 +72,18 @@ final class WeatherDetailViewModelFamily extends $Family
         isAutoDispose: true,
       );
 
-  WeatherDetailViewModelProvider call(String city) =>
-      WeatherDetailViewModelProvider._(argument: city, from: this);
+  WeatherDetailViewModelProvider call(LocationData location) =>
+      WeatherDetailViewModelProvider._(argument: location, from: this);
 
   @override
   String toString() => r'weatherDetailViewModelProvider';
 }
 
 abstract class _$WeatherDetailViewModel extends $AsyncNotifier<WeatherData> {
-  late final _$args = ref.$arg as String;
-  String get city => _$args;
+  late final _$args = ref.$arg as LocationData;
+  LocationData get location => _$args;
 
-  FutureOr<WeatherData> build(String city);
+  FutureOr<WeatherData> build(LocationData location);
   @$mustCallSuper
   @override
   void runBuild() {

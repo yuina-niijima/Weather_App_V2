@@ -1,5 +1,6 @@
 import 'package:permission_handler/permission_handler.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:weather_app_v2/model/location_data.dart';
 import 'package:weather_app_v2/repository/location_repository.dart';
 
 part 'main_home_page_view_model.g.dart';
@@ -17,8 +18,8 @@ class MainHomeViewModel extends _$MainHomeViewModel {
   }
 
   // 現在地の天気を見るボタンの処理
-  Future<String> fetchCurrentCity() async {
+  Future<LocationData> fetchCurrentCity() async {
     final repository = ref.read(locationRepositoryProvider);
-    return await repository.getCurrentCityName();
+    return await repository.getCurrentLocationData();
   }
 }
