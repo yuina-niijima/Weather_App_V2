@@ -65,3 +65,10 @@ class WeatherRepository {
     return UnknownException();
   }
 }
+
+@riverpod
+WeatherRepository weatherRepository(Ref ref) {
+  return WeatherRepository(
+    ref.watch(dioProvider),
+  );
+}

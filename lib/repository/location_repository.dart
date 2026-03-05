@@ -1,4 +1,3 @@
-import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -24,21 +23,10 @@ class LocationRepository {
 
   Future<LocationData> getCurrentLocationData() async {
     final pos = await getCurrentPosition();
-    String? cityName;
-    try {
-      final placemarks = await placemarkFromCoordinates(
-        pos.latitude,
-        pos.longitude,
-      );
-      cityName = placemarks.first.locality;
-    } catch (_) {
-      cityName = '現在地';
-    }
-
     return LocationData(
       latitude: pos.latitude,
       longitude: pos.longitude,
-      cityName: cityName,
+      cityName: '現在地',
     );
   }
 }
