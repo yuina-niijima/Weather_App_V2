@@ -39,6 +39,36 @@ class WeatherRepository {
     }
   }
 
+  // 緯度・経度から天気を取得するメソッド
+  Future<WeatherData> fetchWeatherByCoordinates(double lat, double lon) async {
+    try {
+      final response = await dio.get(
+        '/weather',
+        queryParameters: {
+          'lat': lat,
+          'lon': lon,
+          'appid': AppConfig.apiKey,
+          'units': 'metric',
+          'lang': 'ja',
+        },
+      );
+
+      final fullData = WeatherDataResponse.fromJson(response.data);
+
+      return WeatherData(
+        description: fullData.weather[0].description,
+        icon: fullData.weather[0].icon,
+        tempMax: Temp(value: fullData.main.tempMax),
+        tempMin: Temp(value: fullData.main.tempMin),
+        humidity: fullData.main.humidity,
+      );
+    } on DioException catch (e) {
+      throw _parseDioError(e);
+    } catch (e) {
+      throw UnknownException();
+    }
+  }
+
   WeatherException _parseDioError(DioException e) {
     if (e.type == DioExceptionType.connectionTimeout ||
         e.type == DioExceptionType.connectionError) {
