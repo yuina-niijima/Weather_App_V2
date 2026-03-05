@@ -3,7 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:weather_app_v2/component/weather_detail_modal.dart';
 import 'package:weather_app_v2/page/prefecture_screen.dart';
-import 'package:weather_app_v2/page/weather_detail_screen.dart';
+import 'package:weather_app_v2/repository/location_repository.dart';
 import 'package:weather_app_v2/view_model/main_home_page_view_model.dart';
 
 class MainHomePage extends HookConsumerWidget {
@@ -51,11 +51,14 @@ class MainHomePage extends HookConsumerWidget {
                   label: '現在地の天気を見る',
                   backgroundColor: Colors.orange,
                   onPressed: () async {
-                    final city = await ref
-                        .read(mainHomeViewModelProvider.notifier)
-                        .fetchCurrentCity();
+                    final locationData = await ref
+                        .read(locationRepositoryProvider)
+                        .getCurrentLocationData();
                     if (context.mounted) {
-                      WeatherDetailModal.showWeatherModal(context, city);
+                      WeatherDetailModal.showWeatherModal(
+                        context,
+                        locationData,
+                      );
                     }
                   },
                 ),
