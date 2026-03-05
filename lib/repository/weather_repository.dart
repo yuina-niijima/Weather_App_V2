@@ -59,9 +59,11 @@ class WeatherRepository {
         e.type == DioExceptionType.connectionError) {
       return NetworkException();
     }
+    // サーバー側の問題（500系）
     if (e.response?.statusCode != null && e.response!.statusCode! >= 500) {
       return ServerException();
     }
+    // それ以外
     return UnknownException();
   }
 }
