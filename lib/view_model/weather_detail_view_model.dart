@@ -12,7 +12,7 @@ final class WeatherDetailViewModel extends _$WeatherDetailViewModel {
   }
 
   Future<WeatherData> _fetchWeather(String city) async {
-    final repository = ref.watch(weatherRepositoryProvider);
+    final repository = ref.read(weatherRepositoryProvider);
     return repository.fetchWeather(city);
   }
 }
