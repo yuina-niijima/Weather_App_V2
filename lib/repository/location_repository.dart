@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+import 'package:geocoding/geocoding.dart' as geo;
 import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -23,11 +25,22 @@ class LocationRepository {
 
   Future<LocationData> getCurrentLocationData() async {
     final pos = await getCurrentPosition();
-    return LocationData(
-      latitude: pos.latitude,
-      longitude: pos.longitude,
-      cityName: '現在地',
-    );
+
+    try {
+      await geo.setLocaleIdentifier("ja_JP");
+      List<geo.Placemark> placemarks = await geo.placemarkFromCoordinates(
+        pos.latitude,
+        pos.longitude,
+      );
+      if (placemarks.isNotEmpty) {
+        final place = placemarks.first;
+        final name = place.locality ?? place.administrativeArea ?? '現在地';
+        return City(name: name);
+      }
+    } catch (e) {
+      debugPrint('ジオコーディング失敗: $e');
+    }
+    return const City(name: '現在地');
   }
 }
 
