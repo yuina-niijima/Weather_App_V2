@@ -12,16 +12,15 @@ final class WeatherDetailViewModel extends _$WeatherDetailViewModel {
     return _fetchWeather(location);
   }
 
+  String get title => '${location.getName()}の天気';
+
   Future<WeatherData> _fetchWeather(LocationData location) async {
     final repository = ref.read(weatherRepositoryProvider);
+    return switch (location) {
+      GeoCordinate(lat: double lat, lon: double lon) =>
+        repository.fetchWeatherByCoordinates(lat, lon),
 
-    if (location.latitude == 0 && location.longitude == 0) {
-      return repository.fetchWeather(location.cityName ?? '');
-    }
-
-    return repository.fetchWeatherByCoordinates(
-      location.latitude,
-      location.longitude,
-    );
+      City(name: String cityName) => repository.fetchWeather(cityName),
+    };
   }
 }
