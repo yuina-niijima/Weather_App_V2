@@ -3,7 +3,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:weather_app_v2/component/weather_detail_modal.dart';
 import 'package:weather_app_v2/page/prefecture_screen.dart';
-import 'package:weather_app_v2/repository/location_repository.dart';
 import 'package:weather_app_v2/view_model/main_home_page_view_model.dart';
 
 class MainHomePage extends HookConsumerWidget {
@@ -11,7 +10,7 @@ class MainHomePage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final viewModel = ref.read(mainHomeViewModelProvider.notifier);
+    final viewModel = ref.watch(mainHomeViewModelProvider.notifier);
 
     useEffect(() {
       Future.microtask(() => viewModel.requestLocationPermission());
@@ -51,10 +50,8 @@ class MainHomePage extends HookConsumerWidget {
                   label: '現在地の天気を見る',
                   backgroundColor: Colors.orange,
                   onPressed: () async {
-                    final locationData = await ref
-                        .read(locationRepositoryProvider)
-                        .getCurrentLocationData();
-                    if (context.mounted) {
+                    final locationData = await viewModel.fetchCurrentCity();
+                    if (locationData != null && context.mounted) {
                       WeatherDetailModal.showWeatherModal(
                         context,
                         locationData,

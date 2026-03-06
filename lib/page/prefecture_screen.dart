@@ -17,16 +17,14 @@ class PrefectureScreen extends ConsumerWidget {
       body: ListView.builder(
         itemCount: prefectures.length,
         itemBuilder: (context, index) {
-          final cityName = prefectures[index];
-          final data = LocationData(
-            latitude: 0,
-            longitude: 0,
-            cityName: cityName,
+          final city = City(
+            name: prefectures[index],
           );
+
           return ListTile(
-            title: Text(cityName),
+            title: Text(city.name),
             onTap: () {
-              WeatherDetailModal.showWeatherModal(context, data);
+              WeatherDetailModal.showWeatherModal(context, city);
             },
           );
         },

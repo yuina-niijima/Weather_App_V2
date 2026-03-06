@@ -18,8 +18,10 @@ class MainHomeViewModel extends _$MainHomeViewModel {
   }
 
   // 現在地の天気を見るボタンの処理
-  Future<LocationData> fetchCurrentCity() async {
+  Future<LocationData?> fetchCurrentCity() async {
     final repository = ref.read(locationRepositoryProvider);
-    return await repository.getCurrentLocationData();
+    final data = await repository.getCurrentLocationData();
+
+    return data;
   }
 }

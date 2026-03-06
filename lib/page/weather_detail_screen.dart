@@ -12,7 +12,7 @@ class WeatherDetailScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final provider = weatherDetailViewModelProvider(location);
-    final cityName = location.cityName ?? '現在地';
+    final title = ref.read(provider.notifier).title;
     ref.listen(
       provider,
       (_, next) => next.whenOrNull(
@@ -39,7 +39,7 @@ class WeatherDetailScreen extends ConsumerWidget {
     );
 
     return Scaffold(
-      appBar: AppBar(title: Text('$cityNameの天気')),
+      appBar: AppBar(title: Text(title)),
       body: Center(
         child: ref
             .watch(provider)
