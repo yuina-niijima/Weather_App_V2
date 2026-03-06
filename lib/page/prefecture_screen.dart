@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:weather_app_v2/component/weather_detail_modal.dart';
 import 'package:weather_app_v2/constant/prefectures.dart';
-import 'package:weather_app_v2/page/weather_detail_screen.dart';
+import 'package:weather_app_v2/model/location_data.dart';
 
 class PrefectureScreen extends ConsumerWidget {
   const PrefectureScreen({super.key});
@@ -16,18 +17,14 @@ class PrefectureScreen extends ConsumerWidget {
       body: ListView.builder(
         itemCount: prefectures.length,
         itemBuilder: (context, index) {
-          final cityName = prefectures[index];
+          final city = City(
+            name: prefectures[index],
+          );
+
           return ListTile(
-            title: Text(cityName),
+            title: Text(city.name),
             onTap: () {
-              showModalBottomSheet(
-                context: context,
-                isScrollControlled: true,
-                useSafeArea: true,
-                builder: (context) => WeatherDetailScreen(
-                  city: cityName,
-                ),
-              );
+              WeatherDetailModal.showWeatherModal(context, city);
             },
           );
         },

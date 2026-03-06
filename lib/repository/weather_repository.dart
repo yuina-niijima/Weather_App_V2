@@ -11,12 +11,26 @@ class WeatherRepository {
   final Dio dio;
   WeatherRepository(this.dio);
 
+  // 都市名で取得
   Future<WeatherData> fetchWeather(String city) async {
+    return _fetchWeatherData({'q': '$city,JP'});
+  }
+
+  // 緯度・経度で取得
+  Future<WeatherData> fetchWeatherByCoordinates(double lat, double lon) async {
+    return _fetchWeatherData({'lat': lat, 'lon': lon});
+  }
+
+  // 通信とデータ変換を一つのメソッドに集約
+  Future<WeatherData> _fetchWeatherData(
+    // Map<String, dynamic> で複数の情報を一つにまとめて、各関数の欲しいものを取ってくる
+    Map<String, dynamic> searchOptions,
+  ) async {
     try {
       final response = await dio.get(
         '/weather',
         queryParameters: {
-          'q': '$city,JP',
+          ...searchOptions,
           'appid': AppConfig.apiKey,
           'units': 'metric',
           'lang': 'ja',
@@ -39,6 +53,7 @@ class WeatherRepository {
     }
   }
 
+  // エラー解析（変更なし）
   WeatherException _parseDioError(DioException e) {
     if (e.type == DioExceptionType.connectionTimeout ||
         e.type == DioExceptionType.connectionError) {
