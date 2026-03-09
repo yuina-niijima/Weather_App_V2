@@ -1,10 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:weather_app_v2/model/location_data.dart';
 
 part 'weather_data.freezed.dart';
 part 'weather_data.g.dart';
 
-// TODO: モデル追加。都市名と天気情報を持つモデルを定義する。これをWeatherDetailsScreenのViewModelでStateとして保持する
 @freezed
 abstract class CityWeatherData with _$CityWeatherData {
   const factory CityWeatherData({

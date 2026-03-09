@@ -13,7 +13,7 @@ part of 'weather_detail_view_model.dart';
 final weatherDetailViewModelProvider = WeatherDetailViewModelFamily._();
 
 final class WeatherDetailViewModelProvider
-    extends $AsyncNotifierProvider<WeatherDetailViewModel, WeatherData> {
+    extends $AsyncNotifierProvider<WeatherDetailViewModel, CityWeatherData> {
   WeatherDetailViewModelProvider._({
     required WeatherDetailViewModelFamily super.from,
     required LocationData super.argument,
@@ -52,15 +52,15 @@ final class WeatherDetailViewModelProvider
 }
 
 String _$weatherDetailViewModelHash() =>
-    r'db4bcf7ab9709ffa6a212fdb4880cc270f9519ec';
+    r'6262e9a3f7c29d2fab780af58641e8623a02c6d0';
 
 final class WeatherDetailViewModelFamily extends $Family
     with
         $ClassFamilyOverride<
           WeatherDetailViewModel,
-          AsyncValue<WeatherData>,
-          WeatherData,
-          FutureOr<WeatherData>,
+          AsyncValue<CityWeatherData>,
+          CityWeatherData,
+          FutureOr<CityWeatherData>,
           LocationData
         > {
   WeatherDetailViewModelFamily._()
@@ -79,20 +79,21 @@ final class WeatherDetailViewModelFamily extends $Family
   String toString() => r'weatherDetailViewModelProvider';
 }
 
-abstract class _$WeatherDetailViewModel extends $AsyncNotifier<WeatherData> {
+abstract class _$WeatherDetailViewModel
+    extends $AsyncNotifier<CityWeatherData> {
   late final _$args = ref.$arg as LocationData;
   LocationData get location => _$args;
 
-  FutureOr<WeatherData> build(LocationData location);
+  FutureOr<CityWeatherData> build(LocationData location);
   @$mustCallSuper
   @override
   void runBuild() {
-    final ref = this.ref as $Ref<AsyncValue<WeatherData>, WeatherData>;
+    final ref = this.ref as $Ref<AsyncValue<CityWeatherData>, CityWeatherData>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<AsyncValue<WeatherData>, WeatherData>,
-              AsyncValue<WeatherData>,
+              AnyNotifier<AsyncValue<CityWeatherData>, CityWeatherData>,
+              AsyncValue<CityWeatherData>,
               Object?,
               Object?
             >;

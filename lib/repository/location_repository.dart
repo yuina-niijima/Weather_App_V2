@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:geocoding/geocoding.dart' as geo;
 import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -41,12 +40,19 @@ class LocationRepository {
         /// locality（市区町村）が存在しない場合は、administrativeArea（都道府県）を使用する
         /// どちらも存在しない場合は「現在地」とする
         final name = place.locality ?? place.administrativeArea ?? '現在地';
-        return City(name: name);
+        return City(
+          name: name,
+          lat: pos.latitude,
+          lon: pos.longitude,
+        );
       }
     } catch (e) {
       throw Exception('住所が見つかりませんでした');
     }
-    return GeoCordinate(lat: pos.latitude, lon: pos.longitude);
+    return GeoCordinate(
+      lat: pos.latitude,
+      lon: pos.longitude,
+    );
   }
 }
 

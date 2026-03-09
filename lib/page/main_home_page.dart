@@ -50,9 +50,7 @@ class MainHomePage extends HookConsumerWidget {
                   label: '現在地の天気を見る',
                   backgroundColor: Colors.orange,
                   onPressed: () async {
-                    //　FIXME: 位置情報を渡したい。しかし都市名を取得して渡している
-                    // LocationDataはCityであるべきではない。
-                    final locationData = await viewModel.fetchCurrentCity();
+                    final locationData = await viewModel.fetchCurrentLocation();
                     if (locationData != null && context.mounted) {
                       WeatherDetailModal.showWeatherModal(
                         context,

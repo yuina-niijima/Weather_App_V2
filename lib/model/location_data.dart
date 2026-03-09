@@ -21,8 +21,12 @@ class GeoCordinate extends LocationData {
 
 class City extends LocationData {
   final String name;
+  final double? lat;
+  final double? lon;
 
   const City({
     required this.name,
+    this.lat,
+    this.lon,
   });
 }

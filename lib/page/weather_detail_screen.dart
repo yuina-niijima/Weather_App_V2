@@ -49,7 +49,8 @@ class WeatherDetailScreen extends ConsumerWidget {
                 onPressed: () => ref.invalidate(provider),
                 child: const Text('再試行'),
               ),
-              data: (weather) => _WeatherContent(weather: weather),
+              data: (cityWeather) =>
+                  _WeatherContent(weather: cityWeather.weatherData),
             ),
       ),
     );
