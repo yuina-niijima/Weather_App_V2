@@ -23,6 +23,9 @@ class LocationRepository {
     throw Exception('位置情報の利用が許可されませんでした');
   }
 
+  /// 現在地の位置情報を取得し、ジオコーディングして都市名を返す
+  ///
+  /// 位置情報の取得に失敗した場合やジオコーディングに失敗した場合は、デフォルトで「現在地」という名前のCityを返す
   Future<LocationData> getCurrentLocationData() async {
     final pos = await getCurrentPosition();
 
@@ -34,13 +37,16 @@ class LocationRepository {
       );
       if (placemarks.isNotEmpty) {
         final place = placemarks.first;
+
+        /// locality（市区町村）が存在しない場合は、administrativeArea（都道府県）を使用する
+        /// どちらも存在しない場合は「現在地」とする
         final name = place.locality ?? place.administrativeArea ?? '現在地';
         return City(name: name);
       }
     } catch (e) {
-      debugPrint('ジオコーディング失敗: $e');
+      throw Exception('住所が見つかりませんでした');
     }
-    return const City(name: '現在地');
+    return GeoCordinate(lat: pos.latitude, lon: pos.longitude);
   }
 }
 
