@@ -52,7 +52,7 @@ final class WeatherDetailViewModelProvider
 }
 
 String _$weatherDetailViewModelHash() =>
-    r'6262e9a3f7c29d2fab780af58641e8623a02c6d0';
+    r'649f7876fd564f10f35a394880d6f2a569c01e30';
 
 final class WeatherDetailViewModelFamily extends $Family
     with
