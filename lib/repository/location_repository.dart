@@ -8,12 +8,22 @@ part 'location_repository.g.dart';
 
 class LocationRepository {
   Future<Position> getCurrentPosition() async {
-    final status = await Permission.locationWhenInUse.status;
+    // 端末の位置情報サービス（GPSスイッチ）が有効かチェック
+    bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      throw Exception('位置情報サービスがオフになっています');
+    }
+
+    // 権限を確認し、なければリクエストする
+    var status = await Permission.locationWhenInUse.status;
+    if (status.isDenied) {
+      status = await Permission.locationWhenInUse.request();
+    }
 
     if (status.isGranted) {
       return await Geolocator.getCurrentPosition(
         locationSettings: const LocationSettings(
-          accuracy: LocationAccuracy.low,
+          accuracy: LocationAccuracy.high, // Android用に高精度モード
           distanceFilter: 100,
         ),
       );
