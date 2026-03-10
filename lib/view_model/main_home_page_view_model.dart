@@ -17,11 +17,11 @@ class MainHomeViewModel extends _$MainHomeViewModel {
     await Permission.locationWhenInUse.request();
   }
 
-  // 現在地の天気を見るボタンの処理
-  Future<LocationData?> fetchCurrentLocation() async {
+  /// 現在地の位置情報を取得する
+  Future<GeoCordinate> fetchCurrentGeoCordinate() async {
     final repository = ref.read(locationRepositoryProvider);
-    final data = await repository.getCurrentLocationData();
+    final geoCordinate = await repository.getCurrentPosition();
 
-    return data;
+    return geoCordinate;
   }
 }

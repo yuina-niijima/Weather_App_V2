@@ -1,6 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:weather_app_v2/model/location_data.dart';
 import 'package:weather_app_v2/model/weather_data.dart';
+import 'package:weather_app_v2/repository/location_repository.dart';
 import 'package:weather_app_v2/repository/weather_repository.dart';
 
 part 'weather_detail_view_model.g.dart';
@@ -10,13 +11,10 @@ final class WeatherDetailViewModel extends _$WeatherDetailViewModel {
   @override
   FutureOr<CityWeatherData> build(LocationData location) async {
     final weatherData = await _fetchWeather(location);
-
-    final displayCity = location is City
-        ? location
-        : City(name: location.getName());
+    final city = await _getCityFromLocation(location);
 
     return CityWeatherData(
-      city: displayCity,
+      city: city,
       weatherData: weatherData,
     );
   }
@@ -26,15 +24,27 @@ final class WeatherDetailViewModel extends _$WeatherDetailViewModel {
     return '$cityNameの天気';
   }
 
+  /// LocationDataからCityを取得する
+  Future<City> _getCityFromLocation(LocationData location) async {
+    switch (location) {
+      case GeoCordinate(lat: double lat, lon: double lon):
+        final repository = ref.read(locationRepositoryProvider);
+
+        return await repository.getCurrentLocationData(
+          lat: lat,
+          lon: lon,
+        );
+
+      case City(name: String cityName):
+        return City(name: cityName);
+    }
+  }
+
   Future<WeatherData> _fetchWeather(LocationData location) async {
     final repository = ref.read(weatherRepositoryProvider);
     return switch (location) {
       // 座標クラス（GeoCordinate）なら座標で叩く
       GeoCordinate(lat: double lat, lon: double lon) =>
-        repository.fetchWeatherByCoordinates(lat, lon),
-
-      // Cityクラスでも、緯度経度(lat, lon)を持っていれば、座標を優先して叩く
-      City(lat: double lat?, lon: double lon?) =>
         repository.fetchWeatherByCoordinates(lat, lon),
 
       // 緯度経度がないCity（都道府県選択など）は、名前で叩く

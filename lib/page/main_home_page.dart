@@ -50,13 +50,16 @@ class MainHomePage extends HookConsumerWidget {
                   label: '現在地の天気を見る',
                   backgroundColor: Colors.orange,
                   onPressed: () async {
-                    final locationData = await viewModel.fetchCurrentLocation();
-                    if (locationData != null && context.mounted) {
-                      WeatherDetailModal.showWeatherModal(
-                        context,
-                        locationData,
-                      );
-                    }
+                    /// 現在地の緯度経度を取得する
+                    final geoCordinate = await viewModel
+                        .fetchCurrentGeoCordinate();
+
+                    if (!context.mounted) return;
+
+                    WeatherDetailModal.showWeatherModal(
+                      context,
+                      geoCordinate,
+                    );
                   },
                 ),
               ],
