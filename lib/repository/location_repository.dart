@@ -36,7 +36,7 @@ class LocationRepository {
 
   /// 位置情報からジオコーディングして都市名を返す
   ///
-  /// ジオコーディングに失敗した場合は、デフォルトで「現在地」という名前のCityを返す
+  /// ジオコーディングに失敗した場合は例外を投げる。住所が特定できない項目がある場合は、「現在地」という名前を返す。
   Future<City> getCurrentLocationData({
     required double lat,
     required double lon,

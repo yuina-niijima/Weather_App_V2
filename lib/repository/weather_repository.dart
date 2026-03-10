@@ -53,7 +53,7 @@ class WeatherRepository {
     }
   }
 
-  // エラー解析（変更なし）
+  // エラー解析
   WeatherException _parseDioError(DioException e) {
     if (e.type == DioExceptionType.connectionTimeout ||
         e.type == DioExceptionType.connectionError) {
