@@ -1,12 +1,5 @@
 sealed class LocationData {
   const LocationData();
-  String getName() {
-    final data = this;
-    if (data is City) {
-      return data.name;
-    }
-    return '現在地';
-  }
 }
 
 class GeoCordinate extends LocationData {
