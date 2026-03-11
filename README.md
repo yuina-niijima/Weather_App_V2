@@ -108,7 +108,7 @@ flutter run -d web       # Web
 - **[dio](https://pub.dev/packages/dio)**: HTTPリクエストを簡単かつ便利に行う。
 - **[permission_hundler]**:デバイスの権限管理ライブラリ。位置情報、カメラ、通知などの利用許可の状態確認や、ユーザーへの要求を行う。
 - **[geolocater](https://pub.dev/packages/geolocator)**:位置情報操作ライブラリ。デバイスのGPSから現在地の緯度・経度を取得したり、ユーザーの位置情報利用許可を管理したりするための仲介機。
-
+- **[geocording](https://pub.dev/packages/geocoding/install)**:緯度経度を都市名に、都市名を緯度経度に変換する。
 
 ### 開発用依存関係
 

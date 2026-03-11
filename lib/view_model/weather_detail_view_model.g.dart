@@ -13,10 +13,10 @@ part of 'weather_detail_view_model.dart';
 final weatherDetailViewModelProvider = WeatherDetailViewModelFamily._();
 
 final class WeatherDetailViewModelProvider
-    extends $AsyncNotifierProvider<WeatherDetailViewModel, WeatherData> {
+    extends $AsyncNotifierProvider<WeatherDetailViewModel, CityWeatherData> {
   WeatherDetailViewModelProvider._({
     required WeatherDetailViewModelFamily super.from,
-    required String super.argument,
+    required LocationData super.argument,
   }) : super(
          retry: null,
          name: r'weatherDetailViewModelProvider',
@@ -52,16 +52,16 @@ final class WeatherDetailViewModelProvider
 }
 
 String _$weatherDetailViewModelHash() =>
-    r'4608f66bdb793e85eefac551cdd89360add56b9c';
+    r'1138af860bf1c38e6ba318f9b38fe5d267f8fe1b';
 
 final class WeatherDetailViewModelFamily extends $Family
     with
         $ClassFamilyOverride<
           WeatherDetailViewModel,
-          AsyncValue<WeatherData>,
-          WeatherData,
-          FutureOr<WeatherData>,
-          String
+          AsyncValue<CityWeatherData>,
+          CityWeatherData,
+          FutureOr<CityWeatherData>,
+          LocationData
         > {
   WeatherDetailViewModelFamily._()
     : super(
@@ -72,27 +72,28 @@ final class WeatherDetailViewModelFamily extends $Family
         isAutoDispose: true,
       );
 
-  WeatherDetailViewModelProvider call(String city) =>
-      WeatherDetailViewModelProvider._(argument: city, from: this);
+  WeatherDetailViewModelProvider call(LocationData location) =>
+      WeatherDetailViewModelProvider._(argument: location, from: this);
 
   @override
   String toString() => r'weatherDetailViewModelProvider';
 }
 
-abstract class _$WeatherDetailViewModel extends $AsyncNotifier<WeatherData> {
-  late final _$args = ref.$arg as String;
-  String get city => _$args;
+abstract class _$WeatherDetailViewModel
+    extends $AsyncNotifier<CityWeatherData> {
+  late final _$args = ref.$arg as LocationData;
+  LocationData get location => _$args;
 
-  FutureOr<WeatherData> build(String city);
+  FutureOr<CityWeatherData> build(LocationData location);
   @$mustCallSuper
   @override
   void runBuild() {
-    final ref = this.ref as $Ref<AsyncValue<WeatherData>, WeatherData>;
+    final ref = this.ref as $Ref<AsyncValue<CityWeatherData>, CityWeatherData>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<AsyncValue<WeatherData>, WeatherData>,
-              AsyncValue<WeatherData>,
+              AnyNotifier<AsyncValue<CityWeatherData>, CityWeatherData>,
+              AsyncValue<CityWeatherData>,
               Object?,
               Object?
             >;
