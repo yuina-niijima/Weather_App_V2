@@ -11,6 +11,296 @@ part of 'weather_data.dart';
 
 // dart format off
 T _$identity<T>(T value) => value;
+/// @nodoc
+mixin _$CityWeatherData implements DiagnosticableTreeMixin {
+
+ City get city; WeatherData get weatherData;
+/// Create a copy of CityWeatherData
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$CityWeatherDataCopyWith<CityWeatherData> get copyWith => _$CityWeatherDataCopyWithImpl<CityWeatherData>(this as CityWeatherData, _$identity);
+
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'CityWeatherData'))
+    ..add(DiagnosticsProperty('city', city))..add(DiagnosticsProperty('weatherData', weatherData));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CityWeatherData&&(identical(other.city, city) || other.city == city)&&(identical(other.weatherData, weatherData) || other.weatherData == weatherData));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,city,weatherData);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'CityWeatherData(city: $city, weatherData: $weatherData)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $CityWeatherDataCopyWith<$Res>  {
+  factory $CityWeatherDataCopyWith(CityWeatherData value, $Res Function(CityWeatherData) _then) = _$CityWeatherDataCopyWithImpl;
+@useResult
+$Res call({
+ City city, WeatherData weatherData
+});
+
+
+$WeatherDataCopyWith<$Res> get weatherData;
+
+}
+/// @nodoc
+class _$CityWeatherDataCopyWithImpl<$Res>
+    implements $CityWeatherDataCopyWith<$Res> {
+  _$CityWeatherDataCopyWithImpl(this._self, this._then);
+
+  final CityWeatherData _self;
+  final $Res Function(CityWeatherData) _then;
+
+/// Create a copy of CityWeatherData
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? city = null,Object? weatherData = null,}) {
+  return _then(_self.copyWith(
+city: null == city ? _self.city : city // ignore: cast_nullable_to_non_nullable
+as City,weatherData: null == weatherData ? _self.weatherData : weatherData // ignore: cast_nullable_to_non_nullable
+as WeatherData,
+  ));
+}
+/// Create a copy of CityWeatherData
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$WeatherDataCopyWith<$Res> get weatherData {
+  
+  return $WeatherDataCopyWith<$Res>(_self.weatherData, (value) {
+    return _then(_self.copyWith(weatherData: value));
+  });
+}
+}
+
+
+/// Adds pattern-matching-related methods to [CityWeatherData].
+extension CityWeatherDataPatterns on CityWeatherData {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _CityWeatherData value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _CityWeatherData() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _CityWeatherData value)  $default,){
+final _that = this;
+switch (_that) {
+case _CityWeatherData():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _CityWeatherData value)?  $default,){
+final _that = this;
+switch (_that) {
+case _CityWeatherData() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( City city,  WeatherData weatherData)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _CityWeatherData() when $default != null:
+return $default(_that.city,_that.weatherData);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( City city,  WeatherData weatherData)  $default,) {final _that = this;
+switch (_that) {
+case _CityWeatherData():
+return $default(_that.city,_that.weatherData);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( City city,  WeatherData weatherData)?  $default,) {final _that = this;
+switch (_that) {
+case _CityWeatherData() when $default != null:
+return $default(_that.city,_that.weatherData);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+
+
+class _CityWeatherData with DiagnosticableTreeMixin implements CityWeatherData {
+  const _CityWeatherData({required this.city, required this.weatherData});
+  
+
+@override final  City city;
+@override final  WeatherData weatherData;
+
+/// Create a copy of CityWeatherData
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$CityWeatherDataCopyWith<_CityWeatherData> get copyWith => __$CityWeatherDataCopyWithImpl<_CityWeatherData>(this, _$identity);
+
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'CityWeatherData'))
+    ..add(DiagnosticsProperty('city', city))..add(DiagnosticsProperty('weatherData', weatherData));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CityWeatherData&&(identical(other.city, city) || other.city == city)&&(identical(other.weatherData, weatherData) || other.weatherData == weatherData));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,city,weatherData);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'CityWeatherData(city: $city, weatherData: $weatherData)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$CityWeatherDataCopyWith<$Res> implements $CityWeatherDataCopyWith<$Res> {
+  factory _$CityWeatherDataCopyWith(_CityWeatherData value, $Res Function(_CityWeatherData) _then) = __$CityWeatherDataCopyWithImpl;
+@override @useResult
+$Res call({
+ City city, WeatherData weatherData
+});
+
+
+@override $WeatherDataCopyWith<$Res> get weatherData;
+
+}
+/// @nodoc
+class __$CityWeatherDataCopyWithImpl<$Res>
+    implements _$CityWeatherDataCopyWith<$Res> {
+  __$CityWeatherDataCopyWithImpl(this._self, this._then);
+
+  final _CityWeatherData _self;
+  final $Res Function(_CityWeatherData) _then;
+
+/// Create a copy of CityWeatherData
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? city = null,Object? weatherData = null,}) {
+  return _then(_CityWeatherData(
+city: null == city ? _self.city : city // ignore: cast_nullable_to_non_nullable
+as City,weatherData: null == weatherData ? _self.weatherData : weatherData // ignore: cast_nullable_to_non_nullable
+as WeatherData,
+  ));
+}
+
+/// Create a copy of CityWeatherData
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$WeatherDataCopyWith<$Res> get weatherData {
+  
+  return $WeatherDataCopyWith<$Res>(_self.weatherData, (value) {
+    return _then(_self.copyWith(weatherData: value));
+  });
+}
+}
+
 
 /// @nodoc
 mixin _$WeatherData implements DiagnosticableTreeMixin {
