@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:weather_app_v2/component/location_error_dialog.dart';
 import 'package:weather_app_v2/component/weather_detail_modal.dart';
 import 'package:weather_app_v2/page/prefecture_screen.dart';
 import 'package:weather_app_v2/view_model/main_home_page_view_model.dart';
@@ -50,16 +51,28 @@ class MainHomePage extends HookConsumerWidget {
                   label: '現在地の天気を見る',
                   backgroundColor: Colors.orange,
                   onPressed: () async {
-                    /// 現在地の緯度経度を取得する
-                    final geoCordinate = await viewModel
-                        .fetchCurrentGeoCordinate();
+                    /// 現在地の位置情報を取得し、成功時は天気詳細を表示、失敗時はエラーダイアログを表示する
+                    try {
+                      // 位置情報を取る（失敗したら catch へ飛ぶ）
+                      final geoCordinate = await viewModel
+                          .fetchCurrentGeoCordinate();
 
-                    if (!context.mounted) return;
-
-                    WeatherDetailModal.showWeatherModal(
-                      context,
-                      geoCordinate,
-                    );
+                      // 成功時のみ実行される
+                      if (context.mounted) {
+                        WeatherDetailModal.showWeatherModal(
+                          context,
+                          geoCordinate,
+                        );
+                      }
+                    } catch (e) {
+                      // 失敗した時だけダイアログを出す
+                      if (context.mounted) {
+                        showDialog(
+                          context: context,
+                          builder: (context) => const LocationErrorDialog(),
+                        );
+                      }
+                    }
                   },
                 ),
               ],
