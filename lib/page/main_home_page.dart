@@ -67,7 +67,10 @@ class MainHomePage extends HookConsumerWidget {
                     } catch (e) {
                       // 失敗した時だけダイアログを出す
                       if (context.mounted) {
-                        showLocationErrorDialog(context);
+                        showDialog(
+                          context: context,
+                          builder: (context) => const LocationErrorDialog(),
+                        );
                       }
                     }
                   },

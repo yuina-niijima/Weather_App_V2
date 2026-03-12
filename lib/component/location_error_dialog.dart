@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-/// 位置情報エラーを通知し、OSの設定画面へ誘導する
-Future<void> showLocationErrorDialog(BuildContext context) {
-  return showDialog<void>(
-    context: context,
-    builder: (context) => AlertDialog(
+class LocationErrorDialog extends StatelessWidget {
+  const LocationErrorDialog({super.key});
+
+  /// 位置情報エラーを通知し、OSの設定画面へ誘導する
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
       title: const Text(
         '位置情報を取得できません',
         style: TextStyle(fontWeight: FontWeight.bold),
@@ -26,6 +28,6 @@ Future<void> showLocationErrorDialog(BuildContext context) {
           child: const Text('設定を開く'),
         ),
       ],
-    ),
-  );
+    );
+  }
 }
