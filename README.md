@@ -110,6 +110,7 @@ flutter run -d web       # Web
 - **[geolocater](https://pub.dev/packages/geolocator)**:位置情報操作ライブラリ。デバイスのGPSから現在地の緯度・経度を取得したり、ユーザーの位置情報利用許可を管理したりするための仲介機。
 - **[geocording](https://pub.dev/packages/geocoding/install)**:緯度経度を都市名に、都市名を緯度経度に変換する。
 - **[mocktail](https://pub.dev/packages/mocktail)**:ユニットテストでAPI通信やデータベースなどの依存関係を模倣する軽量なライブラリ。
+- **[plugin_platform_interface](https://pub.dev/packages/plugin_platform_interface)**:geocodingなどのOS依存プラグインを安全にモック化するための公式ユーティリティ。テスト時に発生するプラットフォーム制限（Assertion Error）を回避するために導入
 
 ### 開発用依存関係
 
