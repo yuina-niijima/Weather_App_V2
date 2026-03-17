@@ -40,74 +40,78 @@ void main() {
     const tLat = 35.681; // t: test用の
     const tLon = 139.7671;
 
-    test('localityが取れるならそれを返す', () async {
-      final tPlacemark = geo.Placemark(
-        locality: '千代田区',
-        administrativeArea: '東京都',
-      );
-      when(
-        () => mockGeocoding.placemarkFromCoordinates(any(), any()),
-      ).thenAnswer((_) async => [tPlacemark]);
+    group('正常系のテスト', () {
+      test('localityが取れるならそれを返す', () async {
+        final tPlacemark = geo.Placemark(
+          locality: '千代田区',
+          administrativeArea: '東京都',
+        );
+        when(
+          () => mockGeocoding.placemarkFromCoordinates(any(), any()),
+        ).thenAnswer((_) async => [tPlacemark]);
 
-      final result = await repository.getCurrentLocationData(
-        lat: tLat,
-        lon: tLon,
-      );
+        final result = await repository.getCurrentLocationData(
+          lat: tLat,
+          lon: tLon,
+        );
 
-      expect(result.name, '千代田区');
+        expect(result.name, '千代田区');
+      });
+
+      test('localityがnullのときは都道府県を返す', () async {
+        final tPlacemark = geo.Placemark(
+          locality: null,
+          administrativeArea: '東京都',
+        );
+        when(
+          () => mockGeocoding.placemarkFromCoordinates(any(), any()),
+        ).thenAnswer((_) async => [tPlacemark]);
+
+        final result = await repository.getCurrentLocationData(
+          lat: tLat,
+          lon: tLon,
+        );
+
+        expect(result.name, '東京都');
+      });
+
+      test('住所がどっちもnullなら「現在地」', () async {
+        final tPlacemark = geo.Placemark(
+          locality: null,
+          administrativeArea: null,
+        );
+        when(
+          () => mockGeocoding.placemarkFromCoordinates(any(), any()),
+        ).thenAnswer((_) async => [tPlacemark]);
+
+        final result = await repository.getCurrentLocationData(
+          lat: tLat,
+          lon: tLon,
+        );
+
+        expect(result.name, '現在地');
+      });
     });
 
-    test('localityがnullのときは都道府県を返す', () async {
-      final tPlacemark = geo.Placemark(
-        locality: null,
-        administrativeArea: '東京都',
-      );
-      when(
-        () => mockGeocoding.placemarkFromCoordinates(any(), any()),
-      ).thenAnswer((_) async => [tPlacemark]);
+    group('異常系のテスト', () {
+      test('エラーのときはExceptionを投げるか', () async {
+        when(
+          () => mockGeocoding.placemarkFromCoordinates(any(), any()),
+        ).thenThrow(Exception('Service Error'));
 
-      final result = await repository.getCurrentLocationData(
-        lat: tLat,
-        lon: tLon,
-      );
-
-      expect(result.name, '東京都');
-    });
-
-    test('住所がどっちもnullなら「現在地」', () async {
-      final tPlacemark = geo.Placemark(
-        locality: null,
-        administrativeArea: null,
-      );
-      when(
-        () => mockGeocoding.placemarkFromCoordinates(any(), any()),
-      ).thenAnswer((_) async => [tPlacemark]);
-
-      final result = await repository.getCurrentLocationData(
-        lat: tLat,
-        lon: tLon,
-      );
-
-      expect(result.name, '現在地');
-    });
-
-    test('エラーのときはExceptionを投げるか', () async {
-      when(
-        () => mockGeocoding.placemarkFromCoordinates(any(), any()),
-      ).thenThrow(Exception('Service Error'));
-
-      expect(
-        () => repository.getCurrentLocationData(lat: tLat, lon: tLon),
-        // throwA:今からエラーが起こるという予想を待ち構える
-        throwsA(
-          //isA<Exception>:エラーがexceptionである確認　having:エラーの中身を詳しく調べる
-          isA<Exception>().having(
-            (error) => error.toString(), // エラーの文字を取り出す
-            '',
-            contains('住所が見つかりませんでした'), // エラーにこの文字が入っているか
+        expect(
+          () => repository.getCurrentLocationData(lat: tLat, lon: tLon),
+          // throwA:今からエラーが起こるという予想を待ち構える
+          throwsA(
+            //isA<Exception>:エラーがexceptionである確認　having:エラーの中身を詳しく調べる
+            isA<Exception>().having(
+              (error) => error.toString(), // エラーの文字を取り出す
+              '',
+              contains('住所が見つかりませんでした'), // エラーにこの文字が入っているか
+            ),
           ),
-        ),
-      );
+        );
+      });
     });
   });
 }
