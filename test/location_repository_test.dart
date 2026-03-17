@@ -10,6 +10,10 @@ class MockGeocodingPlatform extends Mock
         MockPlatformInterfaceMixin // 公式のすり替え許可証。withで機能を混ぜる
     implements geo.GeocodingPlatform {} // 本物のメソッドの形だけ借りる
 
+// 元の GeocodingPlatform.instance を保持しておく
+final geo.GeocodingPlatform? _originalGeocodingPlatformInstance =
+    geo.GeocodingPlatform.instance;
+
 void main() {
   // setUpで初期化して使い回したいのでlateで宣言
   late LocationRepository repository; // テスト対象の本物
@@ -19,6 +23,11 @@ void main() {
     repository = LocationRepository();
     mockGeocoding = MockGeocodingPlatform();
     geo.GeocodingPlatform.instance = mockGeocoding;
+
+    // 各テスト終了後に元の instance に戻す
+    addTearDown(() {
+      geo.GeocodingPlatform.instance = _originalGeocodingPlatformInstance;
+    });
 
     // 言語設定はとりあえずモックしておく。any()でどんな引数もキャッチ
     when(
