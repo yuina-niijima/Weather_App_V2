@@ -23,7 +23,7 @@ void main() {
     // 言語設定はとりあえずモックしておく。any()でどんな引数もキャッチ
     when(
       () => mockGeocoding.setLocaleIdentifier(any()),
-    ).thenAnswer((_) async => {}); // 何もしない
+    ).thenAnswer((_) async {}); // 何もしない
   });
 
   group('getCurrentLocationDataのテスト', () {
