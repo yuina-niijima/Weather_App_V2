@@ -100,7 +100,7 @@ void main() {
         () => repository.getCurrentLocationData(lat: tLat, lon: tLon),
         // throwA:今からエラーが起こるという予想を待ち構える
         throwsA(
-          //isA<Exception>:エラーがexeptionである確認　having:エラーの中身を詳しく調べる
+          //isA<Exception>:エラーがexceptionである確認　having:エラーの中身を詳しく調べる
           isA<Exception>().having(
             (error) => error.toString(), // エラーの文字を取り出す
             '',
