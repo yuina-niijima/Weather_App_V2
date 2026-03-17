@@ -106,11 +106,11 @@ flutter run -d web       # Web
 - **[riverpod_generator](https://riverpod.dev/ja/docs/introduction/getting_started)**: 状態管理ライブラリ。データの保持や共有を簡単に行い、面倒な定義コードを自動生成する。
 - **[build_runnner](https://riverpod.dev/ja/docs/introduction/getting_started)**: 状態管理ライブラリ。データの保持や共有を簡単にするため、アノテーションを元にして必要なプログラムを自動生成する実行機。
 - **[dio](https://pub.dev/packages/dio)**: HTTPリクエストを簡単かつ便利に行う。
-- **[permission_handler](https://pub.dev/packages/permission_handler)**:デバイスの権限管理ライブラリ。位置情報、カメラ、通知などの利用許可の状態確認や、ユーザーへの要求を行う。
-- **[geolocator](https://pub.dev/packages/geolocator)**:位置情報操作ライブラリ。デバイスのGPSから現在地の緯度・経度を取得したり、ユーザーの位置情報利用許可を管理したりするための仲介機。
-- **[geocoding](https://pub.dev/packages/geocoding/install)**:緯度経度を都市名に、都市名を緯度経度に変換する。
-- **[mocktail](https://pub.dev/packages/mocktail)**:ユニットテストでAPI通信やデータベースなどの依存関係を模倣する軽量なライブラリ。
-- **[plugin_platform_interface](https://pub.dev/packages/plugin_platform_interface)**:geocodingなどのOS依存プラグインを安全にモック化するための公式ユーティリティ。テスト時に発生するプラットフォーム制限（Assertion Error）を回避するために導入
+- **[permission_handler](https://pub.dev/packages/permission_handler)**: デバイスの権限管理ライブラリ。位置情報、カメラ、通知などの利用許可の状態確認や、ユーザーへの要求を行う。
+- **[geolocator](https://pub.dev/packages/geolocator)**: 位置情報操作ライブラリ。デバイスのGPSから現在地の緯度・経度を取得したり、ユーザーの位置情報利用許可を管理したりするための仲介機。
+- **[geocoding](https://pub.dev/packages/geocoding/install)**: 緯度経度を都市名に、都市名を緯度経度に変換する。
+- **[mocktail](https://pub.dev/packages/mocktail)**: ユニットテストでAPI通信やデータベースなどの依存関係を模倣する軽量なライブラリ。
+- **[plugin_platform_interface](https://pub.dev/packages/plugin_platform_interface)**: geocodingなどのOS依存プラグインを安全にモック化するための公式ユーティリティ。テスト時に発生するプラットフォーム制限（Assertion Error）を回避するために導入
 
 ### 開発用依存関係
 
