@@ -91,7 +91,7 @@ void main() {
       expect(result.name, '現在地');
     });
 
-    test('エラーのときは専用のメッセージを投げるか', () async {
+    test('エラーのときはExceptionを投げるか', () async {
       when(
         () => mockGeocoding.placemarkFromCoordinates(any(), any()),
       ).thenThrow(Exception('Service Error'));
